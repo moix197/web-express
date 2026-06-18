@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/ThemeToggle"
 import { buildWhatsAppUrl, RESERVE_CALL_WA_MESSAGE } from "@/lib/contact"
@@ -10,12 +12,28 @@ import { NAV_LINKS } from "@/components/layout/nav-links"
 const ctaHref = buildWhatsAppUrl("", RESERVE_CALL_WA_MESSAGE, siteConfig)
 
 export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    function handler(e: KeyboardEvent) {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false)
+        hamburgerRef.current?.focus()
+      }
+    }
+    document.addEventListener("keydown", handler)
+    return () => {
+      document.removeEventListener("keydown", handler)
+    }
+  }, [isOpen])
+
   return (
     <header
       role="banner"
       className={cn(
         "sticky top-0 z-40 h-20",
-        "bg-background/80 backdrop-blur-md border-b border-border",
+        "relative bg-background/80 backdrop-blur-md border-b border-border",
       )}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-8">
@@ -45,6 +63,46 @@ export function Navbar() {
           </Button>
           <ThemeToggle />
         </div>
+
+        {/* Hamburger button */}
+        <button
+          ref={hamburgerRef}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          className="md:hidden"
+          onClick={() => setIsOpen((v) => !v)}
+        >
+          {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+        </button>
+      </div>
+
+      {/* Mobile dropdown panel */}
+      <div
+        id="mobile-menu"
+        className={cn(
+          "md:hidden absolute top-full left-0 right-0 border-b border-border bg-background/95 backdrop-blur-md flex-col gap-2 px-4 py-4",
+          isOpen ? "flex" : "hidden",
+        )}
+      >
+        {NAV_LINKS.map((link) => (
+          <Button key={link.href} variant="ghost" size="sm" asChild>
+            <a href={link.href} onClick={() => setIsOpen(false)}>
+              {link.label}
+            </a>
+          </Button>
+        ))}
+        <Button asChild variant="default" size="default">
+          <a
+            href={ctaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsOpen(false)}
+          >
+            Reservá una llamada
+          </a>
+        </Button>
+        <ThemeToggle />
       </div>
     </header>
   )
