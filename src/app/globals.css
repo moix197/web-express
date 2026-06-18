@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/*
+  web-express design tokens.
+
+  TOKEN USAGE CONSTRAINT — read before using `--color-accent` (gold #c9ae7b):
+  The gold accent must be used ONLY for fills, borders, and display/heading
+  text. NEVER use it for small body text — it fails WCAG AA contrast on both
+  the light (#f7f4ef) and dark (#1d1d1d) backgrounds. Body text must always
+  use `--color-foreground`.
+
+  Light background: #f7f4ef   ·   Dark background: #1d1d1d   ·   Accent: #c9ae7b
+*/
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --radius: 0.625rem;
+
+  /* Surfaces & text */
+  --background: #f7f4ef;
+  --foreground: #232020;
+  --surface: #ffffff;
+  --surface-foreground: #232020;
+  --card: #ffffff;
+  --card-foreground: #232020;
+  --popover: #ffffff;
+  --popover-foreground: #232020;
+
+  /* Brand accent (gold) — fills/borders/display text only */
+  --accent: #c9ae7b;
+  --accent-foreground: #232020;
+
+  /* Primary action */
+  --primary: #232020;
+  --primary-foreground: #f7f4ef;
+
+  /* Secondary / muted */
+  --secondary: #efe9e0;
+  --secondary-foreground: #232020;
+  --muted: #efe9e0;
+  --muted-foreground: #6b6258;
+
+  /* Feedback */
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
+
+  /* Lines & focus */
+  --border: #e2dacb;
+  --input: #e2dacb;
+  --ring: #c9ae7b;
+}
+
+.dark {
+  --background: #1d1d1d;
+  --foreground: #ece8e1;
+  --surface: #262626;
+  --surface-foreground: #ece8e1;
+  --card: #262626;
+  --card-foreground: #ece8e1;
+  --popover: #262626;
+  --popover-foreground: #ece8e1;
+
+  --accent: #c9ae7b;
+  --accent-foreground: #1d1d1d;
+
+  --primary: #ece8e1;
+  --primary-foreground: #1d1d1d;
+
+  --secondary: #2e2e2e;
+  --secondary-foreground: #ece8e1;
+  --muted: #2e2e2e;
+  --muted-foreground: #a39c91;
+
+  --destructive: #f2655c;
+  --destructive-foreground: #1d1d1d;
+
+  --border: #36332e;
+  --input: #36332e;
+  --ring: #c9ae7b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Fonts wired via next/font CSS variables in layout.tsx */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-dm-sans), var(--font-inter), ui-sans-serif, sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

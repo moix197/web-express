@@ -78,22 +78,22 @@ Primary risks: Tailwind v4 config differences from v3 (CSS-first token approach)
 | Modify | `package.json` | pnpm scripts; dependencies: next-themes, lucide-react added |
 
 **Steps:**
-- [ ] In the worktree root, run `pnpm create next-app@latest . --typescript --tailwind --app --src-dir --import-alias "@/*" --no-git`
-- [ ] Run `pnpm add next-themes lucide-react`
-- [ ] Run `pnpm dlx shadcn@latest init` (select style: default, base color: neutral, CSS variables: yes)
-- [ ] Run `pnpm dlx shadcn@latest add button badge` to pre-install primitives used across phases
-- [ ] Replace generated `globals.css` with the full token set under `@theme` (light palette as default, dark under `.dark`) — see token spec in Context; add `prefers-reduced-motion` reset in base layer: `@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }`
-- [ ] Token usage constraint (bake into a comment in globals.css): gold `#c9ae7b` (`--color-accent`) must be used only for fills, borders, and display/heading text — NEVER for small body text (fails WCAG AA contrast on both light and dark backgrounds); body text must use `--color-foreground` only
-- [ ] Create `src/content/site.ts` with `SiteConfig` interface and placeholder values (email: `hola@web-express.com.ar`, WhatsApp: `5491100000000`, social URLs: `#`); add inline JSDoc comment on `whatsApp` field explaining format (international without `+`)
-- [ ] Create `src/content/services.ts` with `ServicePackage` interface and 4 typed package objects
-- [ ] Create `src/lib/format.ts` with `formatPriceARS`
-- [ ] Create `src/lib/schema.ts` with both JSON-LD builder functions
-- [ ] Overwrite `src/lib/utils.ts` if shadcn generated a different version — ensure `cn()` is exported
-- [ ] Update `src/app/layout.tsx`: import ThemeProvider from next-themes, wrap children, set `html lang="es"`, apply DM Sans to headings via CSS var, Inter to body
-- [ ] Slim `src/app/page.tsx` to render only `<main><h1>web-express</h1></main>`
-- [ ] Run `pnpm build` and confirm zero TypeScript errors
-- [ ] Run `pnpm dev` and verify heading visible, dark/light toggle works (add temporary toggle button to layout for verification, remove before commit)
-- [ ] Document: update `README.md` with stack, token reference, and `pnpm dev` / `pnpm build` commands
+- [x] In the worktree root, run `pnpm create next-app@latest . --typescript --tailwind --app --src-dir --import-alias "@/*" --no-git`
+- [x] Run `pnpm add next-themes lucide-react`
+- [x] Run `pnpm dlx shadcn@latest init` (select style: default, base color: neutral, CSS variables: yes)
+- [x] Run `pnpm dlx shadcn@latest add button badge` to pre-install primitives used across phases
+- [x] Replace generated `globals.css` with the full token set under `@theme` (light palette as default, dark under `.dark`) — see token spec in Context; add `prefers-reduced-motion` reset in base layer: `@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }`
+- [x] Token usage constraint (bake into a comment in globals.css): gold `#c9ae7b` (`--color-accent`) must be used only for fills, borders, and display/heading text — NEVER for small body text (fails WCAG AA contrast on both light and dark backgrounds); body text must use `--color-foreground` only
+- [x] Create `src/content/site.ts` with `SiteConfig` interface and placeholder values (email: `hola@web-express.com.ar`, WhatsApp: `5491100000000`, social URLs: `#`); add inline JSDoc comment on `whatsApp` field explaining format (international without `+`)
+- [x] Create `src/content/services.ts` with `ServicePackage` interface and 4 typed package objects
+- [x] Create `src/lib/format.ts` with `formatPriceARS`
+- [x] Create `src/lib/schema.ts` with both JSON-LD builder functions
+- [x] Overwrite `src/lib/utils.ts` if shadcn generated a different version — ensure `cn()` is exported
+- [x] Update `src/app/layout.tsx`: import ThemeProvider from next-themes, wrap children, set `html lang="es"`, apply DM Sans to headings via CSS var, Inter to body
+- [x] Slim `src/app/page.tsx` to render only `<main><h1>web-express</h1></main>`
+- [x] Run `pnpm build` and confirm zero TypeScript errors
+- [x] Run `pnpm dev` and verify heading visible, dark/light toggle works (add temporary toggle button to layout for verification, remove before commit)
+- [x] Document: update `README.md` with stack, token reference, and `pnpm dev` / `pnpm build` commands
 
 **Tests:**
 
@@ -103,20 +103,20 @@ Primary risks: Tailwind v4 config differences from v3 (CSS-first token approach)
 | `src/lib/__tests__/schema.test.ts` | `buildLocalBusinessSchema()` returns object with `@type: "LocalBusiness"`, correct `priceCurrency: "ARS"`; `buildServiceSchema` maps service name and price |
 
 **Verification:**
-- [ ] `pnpm dev` — browser at localhost:3000 shows "web-express" heading
-- [ ] Toggle dark mode class on `<html>` in DevTools — background switches between `#f7f4ef` and `#1d1d1d`
-- [ ] Inspect font: heading is DM Sans, body is Inter (DevTools → Computed → font-family)
-- [ ] Hard-reload with dark class active in `<html>` — no flash of unstyled/light content (next-themes `suppressHydrationWarning` working; `defaultTheme` set to `"system"` or explicit)
-- [ ] `pnpm build` exits 0, no type errors
-- [ ] `pnpm test` (if vitest configured) — format + schema unit tests pass
+- [x] `pnpm dev` — browser at localhost:3000 shows "web-express" heading
+- [x] Toggle dark mode class on `<html>` in DevTools — background switches between `#f7f4ef` and `#1d1d1d`
+- [x] Inspect font: heading is DM Sans, body is Inter (DevTools → Computed → font-family)
+- [x] Hard-reload with dark class active in `<html>` — no flash of unstyled/light content (next-themes `suppressHydrationWarning` working; `defaultTheme` set to `"system"` or explicit)
+- [x] `pnpm build` exits 0, no type errors
+- [x] `pnpm test` (if vitest configured) — format + schema unit tests pass
 
 **Phase review:**
-- [ ] All steps completed and checked off
-- [ ] Commit message follows conventional commits
-- [ ] No dead/commented-out code introduced
-- [ ] No new dependencies added beyond what the phase requires
-- [ ] CLAUDE.md invariants respected (pnpm only; thin entry points; build-our-own before installing; small focused functions)
-- [ ] README updated alongside code changes
+- [x] All steps completed and checked off
+- [x] Commit message follows conventional commits
+- [x] No dead/commented-out code introduced
+- [x] No new dependencies added beyond what the phase requires
+- [x] CLAUDE.md invariants respected (pnpm only; thin entry points; build-our-own before installing; small focused functions)
+- [x] README updated alongside code changes
 
 ---
 
