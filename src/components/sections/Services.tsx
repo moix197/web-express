@@ -42,7 +42,7 @@ function ServiceCard({ pkg }: { pkg: ServicePackage }) {
             Popular
           </p>
         )}
-        <h3 className="font-display text-xl font-black leading-tight tracking-tight text-foreground">
+        <h3 className="font-display text-xl font-black uppercase leading-tight tracking-wide text-foreground">
           {pkg.name}
         </h3>
         <p className="text-sm leading-snug text-muted-foreground">
@@ -127,7 +127,7 @@ export function Services() {
     <section
       id="servicios"
       aria-labelledby="services-heading"
-      className="px-4 py-20 sm:px-8 sm:py-24"
+      className="border-t border-border bg-background px-4 py-20 sm:px-8 lg:py-28"
     >
       <div className="mx-auto w-full max-w-5xl">
         {/* Section header */}
@@ -137,7 +137,7 @@ export function Services() {
           </p>
           <h2
             id="services-heading"
-            className="font-display text-3xl font-black leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+            className="font-display text-3xl font-black uppercase leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
           >
             El plan que se adapta a tu negocio
           </h2>

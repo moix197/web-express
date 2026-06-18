@@ -44,21 +44,20 @@ function StepCard({ step, index }: { step: Step; index: number }) {
   const isLast = index === STEPS.length - 1
 
   return (
-    <li className="relative flex flex-row gap-5 lg:flex-col lg:gap-6">
+    <li className="relative flex flex-col items-center gap-4 text-center">
       {/* Connector line (hidden on last item) */}
       {!isLast && (
         <span
           aria-hidden="true"
           className={cn(
-            "absolute top-8 left-8 h-[calc(100%-2rem)] w-px bg-border",
-            "lg:top-8 lg:left-auto lg:h-px lg:w-[calc(100%-3rem+1rem)]",
-            "lg:translate-x-[calc(3rem-0.5px)]"
+            "absolute top-8 left-[calc(50%+2rem)] hidden h-px w-[calc(100%-4rem)] bg-border",
+            "lg:block"
           )}
         />
       )}
 
       {/* Number badge + icon */}
-      <div className="relative z-10 flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl border border-accent/40 bg-surface ring-1 ring-accent/20 lg:h-14 lg:w-14">
+      <div className="relative z-10 flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl border border-accent/40 bg-surface ring-1 ring-accent/20">
         <span
           className="font-display text-xs font-black leading-none tracking-widest text-accent"
           aria-hidden="true"
@@ -72,11 +71,11 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       </div>
 
       {/* Text */}
-      <div className="pt-1 lg:pt-0">
-        <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-foreground">
+      <div>
+        <h3 className="font-display text-base font-black uppercase leading-tight tracking-wider text-foreground">
           {step.title}
         </h3>
-        <p className="mt-1.5 max-w-[38ch] text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
           {step.description}
         </p>
       </div>
@@ -89,7 +88,7 @@ export function Process() {
     <section
       id="proceso"
       aria-labelledby="process-heading"
-      className="px-4 py-20 sm:px-8 sm:py-24"
+      className="border-t border-border bg-muted px-4 py-20 sm:px-8 lg:py-28"
     >
       <div className="mx-auto w-full max-w-5xl">
         {/* Section header */}
@@ -99,7 +98,7 @@ export function Process() {
           </p>
           <h2
             id="process-heading"
-            className="font-display text-3xl font-black leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+            className="font-display text-3xl font-black uppercase leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
           >
             Del brief al lanzamiento
           </h2>
@@ -112,7 +111,7 @@ export function Process() {
         {/* Steps: vertical on mobile, horizontal on lg */}
         <ol
           aria-label="Etapas del proceso"
-          className="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-0"
+          className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0"
         >
           {STEPS.map((step, index) => (
             <StepCard key={step.number} step={step} index={index} />

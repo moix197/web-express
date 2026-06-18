@@ -52,7 +52,7 @@ export function Faq() {
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className="px-4 py-20 sm:px-8 sm:py-24"
+      className="border-t border-border bg-background px-4 py-20 sm:px-8 lg:py-28"
     >
       <div className="mx-auto w-full max-w-3xl">
         {/* Section header */}
@@ -62,7 +62,7 @@ export function Faq() {
           </p>
           <h2
             id="faq-heading"
-            className="font-display text-3xl font-black leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+            className="font-display text-3xl font-black uppercase leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
           >
             ¿Tenés dudas?
           </h2>

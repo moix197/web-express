@@ -42,7 +42,7 @@ function PillarCard({ pillar }: { pillar: Pillar }) {
         <Icon className="size-5" />
       </span>
 
-      <h3 className="text-lg font-semibold leading-snug text-foreground">
+      <h3 className="text-base font-black uppercase leading-snug tracking-wider text-foreground">
         {pillar.heading}
       </h3>
 
@@ -57,7 +57,7 @@ export function About() {
   return (
     <section
       aria-labelledby="about-heading"
-      className="px-4 py-20 sm:px-8 sm:py-24"
+      className="border-t border-border bg-muted px-4 py-20 sm:px-8 lg:py-28"
     >
       <div className="mx-auto w-full max-w-5xl">
         {/* Section header */}
@@ -67,7 +67,7 @@ export function About() {
           </p>
           <h2
             id="about-heading"
-            className="font-display text-3xl font-black leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+            className="font-display text-3xl font-black uppercase leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
           >
             Resultados que se ven desde el primer día
           </h2>

@@ -15,16 +15,15 @@ export function Hero() {
 
         {/* Headline — DM Sans via --font-display, clamped oversized */}
         <h1
-          className="mb-6 font-display font-black leading-[0.95] tracking-tight text-foreground sm:mb-8"
-          style={{ fontSize: "clamp(2.75rem, 8vw, 6rem)" }}
+          className="mb-6 font-display font-black uppercase leading-[0.9] tracking-tight text-foreground sm:mb-8"
+          style={{ fontSize: "clamp(3rem, 9vw, 7rem)" }}
         >
-          {siteConfig.tagline}
+          Tu negocio merece estar en la web
         </h1>
 
         {/* Subheadline */}
-        <p className="mx-auto mb-10 max-w-[60ch] text-base leading-relaxed text-muted-foreground sm:mb-12 sm:text-lg">
-          Diseño y desarrollo web rápido, moderno y a medida — listo para
-          captar clientes desde el primer día.
+        <p className="mx-auto mb-10 max-w-[48ch] text-base leading-relaxed text-muted-foreground sm:mb-12 sm:text-lg">
+          Sitios profesionales, rápidos y listos para captar clientes desde el primer día.
         </p>
 
         {/* CTAs */}

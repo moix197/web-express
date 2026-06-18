@@ -17,7 +17,7 @@ export function Contact() {
     <section
       id="contacto"
       aria-labelledby="contact-heading"
-      className="px-4 py-20 sm:px-8 sm:py-24"
+      className="border-t border-border bg-muted px-4 py-20 sm:px-8 lg:py-28"
     >
       <div className="mx-auto w-full max-w-2xl">
         {/* Section header */}
@@ -27,7 +27,7 @@ export function Contact() {
           </p>
           <h2
             id="contact-heading"
-            className="font-display text-3xl font-black leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+            className="font-display text-3xl font-black uppercase leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
           >
             Hablemos de tu proyecto
           </h2>
