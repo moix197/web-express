@@ -1,6 +1,7 @@
 import { Check } from "lucide-react"
 import { services, type ServicePackage } from "@/content/services"
 import { formatPriceARS } from "@/lib/format"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -28,20 +29,25 @@ function ServiceCard({ pkg }: { pkg: ServicePackage }) {
     <article
       aria-label={`Paquete ${pkg.name}`}
       className={cn(
-        "flex flex-col gap-5 rounded-xl border bg-surface p-6",
+        "relative flex flex-col gap-5 rounded-xl border bg-surface p-6",
         "transition-colors duration-200",
         isFeatured
           ? "border-accent/60 ring-1 ring-accent/30"
           : "border-border"
       )}
     >
+      {isFeatured && (
+        <Badge
+          className="absolute right-4 top-4 z-10 border-accent/50 bg-accent/10 text-accent"
+          variant="outline"
+          aria-label="Paquete popular"
+        >
+          Popular
+        </Badge>
+      )}
+
       {/* Card header */}
       <div className="space-y-1">
-        {isFeatured && (
-          <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-            Popular
-          </p>
-        )}
         <h3 className="font-display text-xl font-black uppercase leading-tight tracking-wide text-foreground">
           {pkg.name}
         </h3>
@@ -103,7 +109,7 @@ function BrandingUpsell() {
           Combo Branding + Sitio Web
         </p>
         <p className="max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
-          Contratando Branding Starter junto con cualquier paquete web obtenés
+          Contratando Branding junto con cualquier paquete web obtenés
           un descuento especial. Identidad visual y presencia online desde el
           arranque.
         </p>

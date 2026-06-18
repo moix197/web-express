@@ -62,7 +62,7 @@ export const services: ServicePackage[] = [
   },
   {
     id: "branding-starter",
-    name: "Branding Starter",
+    name: "Branding",
     price: 149000,
     description: "La identidad visual base para arrancar con todo.",
     features: [
