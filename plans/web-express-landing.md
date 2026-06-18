@@ -140,41 +140,41 @@ Primary risks: Tailwind v4 config differences from v3 (CSS-first token approach)
 | Modify | `src/app/layout.tsx` | Add `<WhatsAppFloatingButton />` outside main so it persists across all pages |
 
 **Steps:**
-- [ ] Use `ui-ux-pro-max` skill (--stack nextjs) for Hero visual design decisions before coding
-- [ ] Create `src/components/sections/Hero.tsx` as a Server Component — no `"use client"`
-- [ ] Headline: oversized (clamp or Tailwind responsive classes), DM Sans, max-width prose container
-- [ ] CTA 1: "Reservá una llamada" — `<a href={`https://wa.me/${siteConfig.whatsApp}?text=${encodeURIComponent("Hola, quiero reservar una llamada")}`}>` styled as primary Button (shadcn), opens `_blank`, `rel="noopener noreferrer"`; always hardcode a non-empty default text so URL is valid even with no user input
-- [ ] CTA 2: "Ver servicios" — `<a href="#servicios">` styled as ghost/outline Button
-- [ ] Apply `min-h-dvh` (not `100vh` or `h-screen`) to Hero wrapper
-- [ ] Create `WhatsAppFloatingButton.tsx` — fixed position, `bottom-6 right-6`, `z-30`, lucide `MessageCircle` icon, aria-label "Contactar por WhatsApp"
-- [ ] Add `WhatsAppFloatingButton` to `layout.tsx` so it renders on all routes
-- [ ] No animations beyond `transition-colors duration-150 ease-out`; no animation libraries (framer-motion, motion, etc.) — transitions respect `prefers-reduced-motion` via the global reset added in Phase 1
-- [ ] Verify no full-width body text (headline and sub capped at max-w prose)
-- [ ] Document: note WhatsApp URL format in `src/content/site.ts` comment
+- [x] Use `ui-ux-pro-max` skill (--stack nextjs) for Hero visual design decisions before coding
+- [x] Create `src/components/sections/Hero.tsx` as a Server Component — no `"use client"`
+- [x] Headline: oversized (clamp or Tailwind responsive classes), DM Sans, max-width prose container
+- [x] CTA 1: "Reservá una llamada" — `<a href={`https://wa.me/${siteConfig.whatsApp}?text=${encodeURIComponent("Hola, quiero reservar una llamada")}`}>` styled as primary Button (shadcn), opens `_blank`, `rel="noopener noreferrer"`; always hardcode a non-empty default text so URL is valid even with no user input
+- [x] CTA 2: "Ver servicios" — `<a href="#servicios">` styled as ghost/outline Button
+- [x] Apply `min-h-dvh` (not `100vh` or `h-screen`) to Hero wrapper
+- [x] Create `WhatsAppFloatingButton.tsx` — fixed position, `bottom-6 right-6`, `z-30`, lucide `MessageCircle` icon, aria-label "Contactar por WhatsApp"
+- [x] Add `WhatsAppFloatingButton` to `layout.tsx` so it renders on all routes
+- [x] No animations beyond `transition-colors duration-150 ease-out`; no animation libraries (framer-motion, motion, etc.) — transitions respect `prefers-reduced-motion` via the global reset added in Phase 1
+- [x] Verify no full-width body text (headline and sub capped at max-w prose)
+- [x] Document: note WhatsApp URL format in `src/content/site.ts` comment
 
 **Tests:**
 
 No automated tests — justified because: pure presentational Server Component with no extractable logic; all behavior is static HTML links verified by Verification steps below.
 
 **Verification:**
-- [ ] `pnpm dev` — Hero fills full viewport height at 375 px, 768 px, 1440 px (Chrome DevTools)
-- [ ] "Reservá una llamada" — right-click → inspect href contains `wa.me` and URL-encoded text
-- [ ] "Ver servicios" href is `#servicios` (section added in Phase 3; anchor target confirmed then)
-- [ ] Floating WhatsApp button visible at bottom-right; does not overlap main content destructively
-- [ ] `z-30` confirmed in DevTools (no `z-[9999]` anywhere in DOM)
-- [ ] Dark mode: toggle `.dark` class — Hero background and text switch correctly
-- [ ] axe DevTools (or axe browser extension) — zero critical/serious violations on Hero
-- [ ] Keyboard: Tab to "Reservá una llamada" → Enter opens WhatsApp; Tab to "Ver servicios" → Enter scrolls
-- [ ] Color contrast: hero heading and subheadline text pass WCAG AA (≥4.5:1 for body size); gold accent not used for body text
-- [ ] `pnpm build` exits 0
+- [x] `pnpm dev` — Hero fills full viewport height at 375 px, 768 px, 1440 px (Chrome DevTools)
+- [x] "Reservá una llamada" — right-click → inspect href contains `wa.me` and URL-encoded text
+- [x] "Ver servicios" href is `#servicios` (section added in Phase 3; anchor target confirmed then)
+- [x] Floating WhatsApp button visible at bottom-right; does not overlap main content destructively
+- [x] `z-30` confirmed in DevTools (no `z-[9999]` anywhere in DOM)
+- [x] Dark mode: toggle `.dark` class — Hero background and text switch correctly
+- [x] axe DevTools (or axe browser extension) — zero critical/serious violations on Hero
+- [x] Keyboard: Tab to "Reservá una llamada" → Enter opens WhatsApp; Tab to "Ver servicios" → Enter scrolls
+- [x] Color contrast: hero heading and subheadline text pass WCAG AA (≥4.5:1 for body size); gold accent not used for body text
+- [x] `pnpm build` exits 0
 
 **Phase review:**
-- [ ] All steps completed and checked off
-- [ ] Commit message follows conventional commits
-- [ ] No dead/commented-out code introduced
-- [ ] No new dependencies added beyond what the phase requires (no animation libs)
-- [ ] CLAUDE.md invariants respected (pnpm only; thin entry points; reuse before reinvent; no hover-only primary actions)
-- [ ] README updated alongside code changes
+- [x] All steps completed and checked off
+- [x] Commit message follows conventional commits
+- [x] No dead/commented-out code introduced
+- [x] No new dependencies added beyond what the phase requires (no animation libs)
+- [x] CLAUDE.md invariants respected (pnpm only; thin entry points; reuse before reinvent; no hover-only primary actions)
+- [x] README updated alongside code changes
 
 ---
 

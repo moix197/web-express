@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { DM_Sans, Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import { siteConfig } from "@/content/site"
+import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton"
 import "./globals.css"
 
 const inter = Inter({
@@ -39,6 +40,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <WhatsAppFloatingButton />
         </ThemeProvider>
       </body>
     </html>

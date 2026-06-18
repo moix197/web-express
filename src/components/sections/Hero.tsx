@@ -1,0 +1,62 @@
+import { siteConfig } from "@/content/site"
+import { Button } from "@/components/ui/button"
+
+const WA_MESSAGE = "Hola, quiero reservar una llamada"
+
+export function Hero() {
+  const waHref = `https://wa.me/${siteConfig.whatsApp}?text=${encodeURIComponent(WA_MESSAGE)}`
+
+  return (
+    <section className="flex min-h-dvh flex-col items-center justify-center px-4 py-16 sm:px-8">
+      <div className="mx-auto w-full max-w-prose text-center">
+        {/* Eyebrow */}
+        <p className="mb-4 text-sm font-medium uppercase tracking-widest text-accent sm:mb-6">
+          {siteConfig.name}
+        </p>
+
+        {/* Headline — DM Sans via --font-display, clamped oversized */}
+        <h1
+          className="mb-6 font-display font-black leading-[0.95] tracking-tight text-foreground sm:mb-8"
+          style={{ fontSize: "clamp(2.75rem, 8vw, 6rem)" }}
+        >
+          {siteConfig.tagline}
+        </h1>
+
+        {/* Subheadline */}
+        <p className="mx-auto mb-10 max-w-[60ch] text-base leading-relaxed text-muted-foreground sm:mb-12 sm:text-lg">
+          Diseño y desarrollo web rápido, moderno y a medida — listo para
+          captar clientes desde el primer día.
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
+          {/* Primary — WhatsApp */}
+          <Button
+            asChild
+            size="lg"
+            variant="default"
+            className="h-11 min-w-[200px] px-6 text-base transition-colors duration-150 ease-out"
+          >
+            <a
+              href={waHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Reservá una llamada
+            </a>
+          </Button>
+
+          {/* Secondary — smooth-scroll anchor */}
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="h-11 min-w-[200px] px-6 text-base transition-colors duration-150 ease-out"
+          >
+            <a href="#servicios">Ver servicios</a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}
