@@ -197,38 +197,38 @@ No automated tests — justified because: pure presentational Server Component w
 | Modify | `src/app/page.tsx` | Import and render `<About />` then `<Services id="servicios" />` below Hero |
 
 **Steps:**
-- [ ] Use `ui-ux-pro-max` skill for bento/pricing card design decisions
-- [ ] Create `About.tsx` — 3-column grid (stacks on mobile), each pillar: lucide icon (CheckCircle or similar), heading, short paragraph; no stock photos; text capped at 65ch
-- [ ] Choose lucide icons for each pillar: e.g. `Settings2` (Autogestionable), `Palette` (Diseño profesional), `TrendingUp` (Pensado para crecer)
-- [ ] Create `Services.tsx` — import `services` array and `formatPriceARS`; map to bento cards; pass `id="servicios"` prop to section element so Hero anchor works
-- [ ] Bento grid: CSS Grid, 2-col on md, 4-col on lg; featured card (BUSINESS or STORE) can span 2 rows or have accent border using `--color-accent` token
-- [ ] Display "Branding + Sitio Web" upsell mention as a callout below the 4 cards (not a separate card)
-- [ ] Each card: package name, price (formatted), feature list with lucide `Check` icon per item, optional CTA linking to `#contacto`
-- [ ] No stock photos; rely on typography, spacing, and token colors for visual interest
-- [ ] Ensure Services section wrapper has `id="servicios"` for anchor scroll
+- [x] Use `ui-ux-pro-max` skill for bento/pricing card design decisions
+- [x] Create `About.tsx` — 3-column grid (stacks on mobile), each pillar: lucide icon (CheckCircle or similar), heading, short paragraph; no stock photos; text capped at 65ch
+- [x] Choose lucide icons for each pillar: e.g. `Settings2` (Autogestionable), `Palette` (Diseño profesional), `TrendingUp` (Pensado para crecer)
+- [x] Create `Services.tsx` — import `services` array and `formatPriceARS`; map to bento cards; pass `id="servicios"` prop to section element so Hero anchor works
+- [x] Bento grid: CSS Grid, 2-col on md, 4-col on lg; featured card (BUSINESS or STORE) can span 2 rows or have accent border using `--color-accent` token
+- [x] Display "Branding + Sitio Web" upsell mention as a callout below the 4 cards (not a separate card)
+- [x] Each card: package name, price (formatted), feature list with lucide `Check` icon per item, optional CTA linking to `#contacto`
+- [x] No stock photos; rely on typography, spacing, and token colors for visual interest
+- [x] Ensure Services section wrapper has `id="servicios"` for anchor scroll
 
 **Tests:**
 
 No automated tests — justified because: both components are pure presentational Server Components reading from typed content files; `formatPriceARS` is unit-tested in Phase 1; visual correctness verified via Verification steps.
 
 **Verification:**
-- [ ] `pnpm dev` — scroll past Hero: About section shows 3 pillars with icons
-- [ ] Lucide icons render (SVG, not emoji)
-- [ ] Services section shows 4 cards with prices: AR$199.000, AR$399.000, AR$649.000, AR$149.000
-- [ ] Hero "Ver servicios" button scrolls to Services section
-- [ ] Bento grid: 1 col at 375 px, 2 col at 768 px, 4 col at 1440 px
-- [ ] Dark mode: cards use `--color-surface` background, not plain white bleed
-- [ ] axe DevTools — zero critical/serious violations on About and Services sections
-- [ ] Keyboard: Tab through service cards — all interactive elements (CTA links) reachable
-- [ ] `pnpm build` exits 0, no TypeScript errors
+- [x] `pnpm dev` — scroll past Hero: About section shows 3 pillars with icons
+- [x] Lucide icons render (SVG, not emoji)
+- [x] Services section shows 4 cards with prices: AR$199.000, AR$399.000, AR$649.000, AR$149.000
+- [x] Hero "Ver servicios" button scrolls to Services section
+- [x] Bento grid: 1 col at 375 px, 2 col at 768 px, 4 col at 1440 px
+- [x] Dark mode: cards use `--color-surface` background, not plain white bleed
+- [x] axe DevTools — zero critical/serious violations on About and Services sections
+- [x] Keyboard: Tab through service cards — all interactive elements (CTA links) reachable
+- [x] `pnpm build` exits 0, no TypeScript errors
 
 **Phase review:**
-- [ ] All steps completed and checked off
-- [ ] Commit message follows conventional commits
-- [ ] No dead/commented-out code introduced
-- [ ] No new dependencies added beyond what the phase requires (no animation libs, no state managers)
-- [ ] CLAUDE.md invariants respected (pnpm only; reuse `formatPriceARS` from lib; no reinvention; small focused functions)
-- [ ] README updated alongside code changes
+- [x] All steps completed and checked off
+- [x] Commit message follows conventional commits
+- [x] No dead/commented-out code introduced
+- [x] No new dependencies added beyond what the phase requires (no animation libs, no state managers)
+- [x] CLAUDE.md invariants respected (pnpm only; reuse `formatPriceARS` from lib; no reinvention; small focused functions)
+- [x] README updated alongside code changes
 
 ---
 
