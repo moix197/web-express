@@ -1,11 +1,10 @@
 import { MessageCircle } from "lucide-react"
 import { siteConfig } from "@/content/site"
 import { cn } from "@/lib/utils"
-
-const WA_MESSAGE = "Hola, quiero reservar una llamada"
+import { buildWhatsAppUrl, RESERVE_CALL_WA_MESSAGE } from "@/lib/contact"
 
 export function WhatsAppFloatingButton() {
-  const waHref = `https://wa.me/${siteConfig.whatsApp}?text=${encodeURIComponent(WA_MESSAGE)}`
+  const waHref = buildWhatsAppUrl("", RESERVE_CALL_WA_MESSAGE, siteConfig)
 
   return (
     <a

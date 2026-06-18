@@ -305,17 +305,17 @@ No automated tests — justified because: Process is a pure static Server Compon
 | Modify | `src/app/page.tsx` | Import and render `<Contact id="contacto" />` then `<Footer />` as final elements |
 
 **Steps:**
-- [ ] Create `Contact.tsx` as `"use client"` — two controlled inputs: `name` (text) and `message` (textarea)
-- [ ] Build WhatsApp URL: `https://wa.me/${siteConfig.whatsApp}?text=${encodeURIComponent(...)}`; when `name` and `message` are both empty, fall back to a hardcoded default message (never produce a bare `?text=` or `?text=undefined`); sanitize via `encodeURIComponent` only — no custom sanitizer needed (browser link opens externally)
-- [ ] Build mailto URL: `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; same empty-input fallback to a non-empty default body
-- [ ] Extract URL builders into two small named helper functions (`buildWhatsAppUrl(name, message, config)`, `buildMailtoUrl(name, message, config)`) — keep Contact.tsx thin (CLAUDE.md: small focused functions, thin entry points); helpers can live in `src/lib/contact.ts`
-- [ ] Two primary CTA buttons: "Escribinos por WhatsApp" and "Mandanos un email" — both `<a>` tags with dynamically computed href; buttons are always visible even before inputs are filled (inputs just enrich the message)
-- [ ] No form submission, no fetch, no third-party endpoint, no react-hook-form, no zod on this component — all client-side string construction only
-- [ ] Add `id="contacto"` to Contact section wrapper for anchor links from Services cards
-- [ ] Create `Footer.tsx` as Server Component — import `siteConfig`; render: logo/name, nav links (Hero, Servicios, Proceso, FAQ, Contacto), social icons using lucide (Github, Instagram, Linkedin as placeholders), copyright `© {new Date().getFullYear()} web-express.com.ar`
-- [ ] Social links use placeholder `#` hrefs until real URLs are set in `site.ts`
-- [ ] Footer social icons: lucide SVGs only, no emoji
-- [ ] Ensure Contact inputs have accessible `<label>` elements
+- [x] Create `Contact.tsx` as `"use client"` — two controlled inputs: `name` (text) and `message` (textarea)
+- [x] Build WhatsApp URL: `https://wa.me/${siteConfig.whatsApp}?text=${encodeURIComponent(...)}`; when `name` and `message` are both empty, fall back to a hardcoded default message (never produce a bare `?text=` or `?text=undefined`); sanitize via `encodeURIComponent` only — no custom sanitizer needed (browser link opens externally)
+- [x] Build mailto URL: `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; same empty-input fallback to a non-empty default body
+- [x] Extract URL builders into two small named helper functions (`buildWhatsAppUrl(name, message, config)`, `buildMailtoUrl(name, message, config)`) — keep Contact.tsx thin (CLAUDE.md: small focused functions, thin entry points); helpers can live in `src/lib/contact.ts`
+- [x] Two primary CTA buttons: "Escribinos por WhatsApp" and "Mandanos un email" — both `<a>` tags with dynamically computed href; buttons are always visible even before inputs are filled (inputs just enrich the message)
+- [x] No form submission, no fetch, no third-party endpoint, no react-hook-form, no zod on this component — all client-side string construction only
+- [x] Add `id="contacto"` to Contact section wrapper for anchor links from Services cards
+- [x] Create `Footer.tsx` as Server Component — import `siteConfig`; render: logo/name, nav links (Hero, Servicios, Proceso, FAQ, Contacto), social icons using lucide (Github, Instagram, Linkedin as placeholders), copyright `© {new Date().getFullYear()} web-express.com.ar`
+- [x] Social links use placeholder `#` hrefs until real URLs are set in `site.ts`
+- [x] Footer social icons: lucide SVGs only, no emoji
+- [x] Ensure Contact inputs have accessible `<label>` elements
 
 **Tests:**
 
@@ -326,25 +326,25 @@ No automated tests — justified because: Process is a pure static Server Compon
 Footer is pure static Server Component — no extractable logic, no test needed.
 
 **Verification:**
-- [ ] `pnpm dev` — scroll to Contact: two CTA buttons visible
-- [ ] Click "Escribinos por WhatsApp" without filling inputs → opens `wa.me` URL with default text
-- [ ] Type name and message → click WhatsApp CTA → URL includes encoded name + message
-- [ ] "Mandanos un email" → opens mailto with pre-filled subject + body
-- [ ] Footer: nav links, social icons (SVG, not emoji), copyright year shows current year
-- [ ] Contact section `id="contacto"` present in DOM source
-- [ ] Dark mode: Contact and Footer use correct token colors
-- [ ] axe DevTools — zero critical/serious violations; labels associated with inputs; CTA buttons have descriptive text
-- [ ] Keyboard: Tab to name input → type → Tab to message → type → Tab to WhatsApp CTA → Enter opens link; Tab to email CTA → Enter opens mailto
-- [ ] `pnpm test` — `contact.test.ts` passes (buildWhatsAppUrl + buildMailtoUrl)
-- [ ] `pnpm build` exits 0
+- [x] `pnpm dev` — scroll to Contact: two CTA buttons visible
+- [x] Click "Escribinos por WhatsApp" without filling inputs → opens `wa.me` URL with default text
+- [x] Type name and message → click WhatsApp CTA → URL includes encoded name + message
+- [x] "Mandanos un email" → opens mailto with pre-filled subject + body
+- [x] Footer: nav links, social icons (SVG, not emoji), copyright year shows current year
+- [x] Contact section `id="contacto"` present in DOM source
+- [x] Dark mode: Contact and Footer use correct token colors
+- [x] axe DevTools — zero critical/serious violations; labels associated with inputs; CTA buttons have descriptive text
+- [x] Keyboard: Tab to name input → type → Tab to message → type → Tab to WhatsApp CTA → Enter opens link; Tab to email CTA → Enter opens mailto
+- [x] `pnpm test` — `contact.test.ts` passes (buildWhatsAppUrl + buildMailtoUrl)
+- [x] `pnpm build` exits 0
 
 **Phase review:**
-- [ ] All steps completed and checked off
-- [ ] Commit message follows conventional commits
-- [ ] No dead/commented-out code introduced
-- [ ] No new dependencies added beyond what the phase requires (no RHF, no zod, no email SaaS, no i18n, no state managers)
-- [ ] CLAUDE.md invariants respected (pnpm only; thin entry points; helpers in lib; small focused functions)
-- [ ] README updated alongside code changes
+- [x] All steps completed and checked off
+- [x] Commit message follows conventional commits
+- [x] No dead/commented-out code introduced
+- [x] No new dependencies added beyond what the phase requires (no RHF, no zod, no email SaaS, no i18n, no state managers)
+- [x] CLAUDE.md invariants respected (pnpm only; thin entry points; helpers in lib; small focused functions)
+- [x] README updated alongside code changes
 
 ---
 

@@ -1,10 +1,9 @@
 import { siteConfig } from "@/content/site"
 import { Button } from "@/components/ui/button"
-
-const WA_MESSAGE = "Hola, quiero reservar una llamada"
+import { buildWhatsAppUrl, RESERVE_CALL_WA_MESSAGE } from "@/lib/contact"
 
 export function Hero() {
-  const waHref = `https://wa.me/${siteConfig.whatsApp}?text=${encodeURIComponent(WA_MESSAGE)}`
+  const waHref = buildWhatsAppUrl("", RESERVE_CALL_WA_MESSAGE, siteConfig)
 
   return (
     <section className="flex min-h-dvh flex-col items-center justify-center px-4 py-16 sm:px-8">
