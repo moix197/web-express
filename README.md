@@ -58,6 +58,30 @@ Editable content lives in typed files under `src/content/`:
 - `services.ts` — the four service packages (name, price in ARS, description,
   features). Add or remove a package by editing the `services` array.
 
+## Navigation
+
+The sticky top navbar lives at `src/components/layout/Navbar.tsx`. Its nav links
+come from the shared `NAV_LINKS` constant in
+`src/components/layout/nav-links.ts` — the single source of truth consumed by
+**both** the Navbar and the Footer (`src/components/sections/Footer.tsx`). To add
+or remove a nav link, edit `nav-links.ts` only; both consumers update
+automatically.
+
+- `src/components/ui/ThemeToggle.tsx` — light/dark toggle built on next-themes.
+  Uses the required mounted-guard (returns `null` until mounted) and
+  `resolvedTheme` to avoid an SSR/client hydration mismatch.
+- `src/hooks/useActiveSection.ts` — scroll-spy hook. Takes section `ids` and uses
+  an `IntersectionObserver` whose `rootMargin` accounts for the 80px navbar.
+  `getActiveSectionId` is the unit-tested pure helper; it accepts `isAtBottom` for
+  the bottom-of-page Contacto fallback.
+
+**Navbar height is a single source of truth.** The scroll offset
+(`scroll-padding-top: 5rem` + `scroll-behavior: smooth` in
+`src/app/globals.css`) is tied to the navbar height (`h-20`). If the navbar height
+changes, update all three together: `scroll-padding-top` (globals.css), the
+`h-20` class on the `<header>` (Navbar.tsx), and `rootMargin`
+(useActiveSection.ts).
+
 ## Deploy
 
 Push the branch and let Vercel build it, or run `vercel`. Tailwind v4 and the
