@@ -2,55 +2,56 @@
 
 import { useEffect, useState } from "react"
 
+const NAVBAR_HEIGHT = 80 // px, matches the h-20 navbar
+
 export function getActiveSectionId(
-  intersectingIds: string[],
-  orderedIds: string[],
+  sectionTops: { id: string; top: number }[],
+  lineOffset: number,
   isAtBottom: boolean,
 ): string {
-  if (isAtBottom) return orderedIds[orderedIds.length - 1]
-  for (const id of orderedIds) {
-    if (intersectingIds.includes(id)) return id
+  if (sectionTops.length === 0) return ""
+  if (isAtBottom) return sectionTops[sectionTops.length - 1].id
+  let active = sectionTops[0].id
+  for (const { id, top } of sectionTops) {
+    if (top <= lineOffset) active = id
+    else break
   }
-  return orderedIds[0]
+  return active
 }
 
 export function useActiveSection(ids: string[]): string {
   const [activeId, setActiveId] = useState(ids[0])
 
   useEffect(() => {
-    const intersecting = new Set<string>()
+    let frame = 0
 
     function recompute() {
+      const lineOffset = NAVBAR_HEIGHT + window.innerHeight * 0.3
+      const sectionTops = ids
+        .map((id) => {
+          const el = document.getElementById(id)
+          return el ? { id, top: el.getBoundingClientRect().top } : null
+        })
+        .filter((v): v is { id: string; top: number } => v !== null)
       const isAtBottom =
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight - 4
-      setActiveId(getActiveSectionId([...intersecting], ids, isAtBottom))
+      setActiveId(getActiveSectionId(sectionTops, lineOffset, isAtBottom))
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            intersecting.add(entry.target.id)
-          } else {
-            intersecting.delete(entry.target.id)
-          }
-        }
-        recompute()
-      },
-      { rootMargin: "-80px 0px -60% 0px" },
-    )
-
-    for (const id of ids) {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
+    function onScrollOrResize() {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(recompute)
     }
 
-    window.addEventListener("scroll", recompute, { passive: true })
+    recompute()
+    window.addEventListener("scroll", onScrollOrResize, { passive: true })
+    window.addEventListener("resize", onScrollOrResize)
 
     return () => {
-      observer.disconnect()
-      window.removeEventListener("scroll", recompute)
+      cancelAnimationFrame(frame)
+      window.removeEventListener("scroll", onScrollOrResize)
+      window.removeEventListener("resize", onScrollOrResize)
     }
   }, [ids])
 

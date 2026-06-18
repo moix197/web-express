@@ -1,26 +1,52 @@
 import { describe, expect, it } from "vitest"
 import { getActiveSectionId } from "@/hooks/useActiveSection"
 
-const ORDERED = ["inicio", "servicios", "proceso", "faq", "contacto"]
-
 describe("getActiveSectionId", () => {
-  it("returns the intersecting id that appears first in ordered list", () => {
-    expect(getActiveSectionId(["servicios"], ORDERED, false)).toBe("servicios")
+  it("returns first section id when at top (no sections above line)", () => {
+    const tops = [
+      { id: "inicio", top: 0 },
+      { id: "servicios", top: 900 },
+      { id: "proceso", top: 1800 },
+    ]
+    expect(getActiveSectionId(tops, 300, false)).toBe("inicio")
   })
 
-  it("returns the first ordered id when no ids are intersecting", () => {
-    expect(getActiveSectionId([], ORDERED, false)).toBe("inicio")
+  it("returns servicios when scrolled so inicio is above line and servicios is below", () => {
+    const tops = [
+      { id: "inicio", top: -600 },
+      { id: "servicios", top: 100 },
+      { id: "proceso", top: 1000 },
+    ]
+    expect(getActiveSectionId(tops, 300, false)).toBe("servicios")
   })
 
-  it("returns the topmost ordered id when multiple ids intersect", () => {
-    expect(getActiveSectionId(["faq", "proceso"], ORDERED, false)).toBe("proceso")
+  it("returns the last section whose top is at or above the line", () => {
+    const tops = [
+      { id: "inicio", top: -600 },
+      { id: "servicios", top: -200 },
+      { id: "proceso", top: 250 },
+      { id: "faq", top: 1200 },
+    ]
+    expect(getActiveSectionId(tops, 300, false)).toBe("proceso")
   })
 
-  it("returns the last ordered id when isAtBottom is true regardless of intersecting set", () => {
-    expect(getActiveSectionId(["inicio"], ORDERED, true)).toBe("contacto")
+  it("defaults to first section when none have crossed the line", () => {
+    const tops = [
+      { id: "inicio", top: 500 },
+      { id: "servicios", top: 1400 },
+    ]
+    expect(getActiveSectionId(tops, 300, false)).toBe("inicio")
   })
 
-  it("returns the last ordered id when isAtBottom is true and intersecting set is empty", () => {
-    expect(getActiveSectionId([], ORDERED, true)).toBe("contacto")
+  it("returns last id when isAtBottom is true regardless of tops", () => {
+    const tops = [
+      { id: "inicio", top: -2000 },
+      { id: "contacto", top: -100 },
+    ]
+    expect(getActiveSectionId(tops, 300, true)).toBe("contacto")
+  })
+
+  it("returns empty string for empty array", () => {
+    expect(getActiveSectionId([], 300, false)).toBe("")
   })
 })
