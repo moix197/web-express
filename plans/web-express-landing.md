@@ -251,37 +251,37 @@ No automated tests — justified because: both components are pure presentationa
 | Modify | `src/app/page.tsx` | Import and render `<Process />` then `<Faq />` below Services |
 
 **Steps:**
-- [ ] Run `pnpm dlx shadcn@latest add accordion` to install shadcn Accordion primitive
-- [ ] Create `Process.tsx` — ordered list of 4 steps; each step: large number (accent color token), step title, brief description; responsive layout (vertical on mobile, horizontal on lg)
-- [ ] Use lucide icons per step: `Search` (Descubrimiento), `Figma` or `Layout` (Diseño), `Code2` (Construcción), `Rocket` (Lanzamiento)
-- [ ] Create `Faq.tsx` — import shadcn `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`
-- [ ] Write 5 Q&As in Argentine voseo Spanish covering: timing (cuánto tarda), hosting/domain (no incluido), self-management (cómo lo administro), Mercado Pago (integration), post-launch support
-- [ ] Accordion type `"single"` with `collapsible`; each item has a unique value
-- [ ] Verify no animation beyond shadcn's default (radix uses CSS vars for animation; confirm `prefers-reduced-motion` is respected by Radix out of the box — it is)
-- [ ] Mark `Faq.tsx` as `"use client"` only if shadcn Accordion requires it; otherwise keep as Server Component
-- [ ] Cap FAQ answer text at 65ch
+- [x] Run `pnpm dlx shadcn@latest add accordion` to install shadcn Accordion primitive
+- [x] Create `Process.tsx` — ordered list of 4 steps; each step: large number (accent color token), step title, brief description; responsive layout (vertical on mobile, horizontal on lg)
+- [x] Use lucide icons per step: `Search` (Descubrimiento), `Figma` or `Layout` (Diseño), `Code2` (Construcción), `Rocket` (Lanzamiento)
+- [x] Create `Faq.tsx` — import shadcn `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`
+- [x] Write 5 Q&As in Argentine voseo Spanish covering: timing (cuánto tarda), hosting/domain (no incluido), self-management (cómo lo administro), Mercado Pago (integration), post-launch support
+- [x] Accordion type `"single"` with `collapsible`; each item has a unique value
+- [x] Verify no animation beyond shadcn's default (radix uses CSS vars for animation; confirm `prefers-reduced-motion` is respected by Radix out of the box — it is)
+- [x] Mark `Faq.tsx` as `"use client"` only if shadcn Accordion requires it; otherwise keep as Server Component
+- [x] Cap FAQ answer text at 65ch
 
 **Tests:**
 
 No automated tests — justified because: Process is a pure static Server Component; FAQ uses shadcn Accordion (Radix, externally tested); accordion behavior is verified via Verification steps including keyboard navigation.
 
 **Verification:**
-- [ ] `pnpm dev` — scroll to Process: 4 numbered steps visible, lucide icons render
-- [ ] FAQ section: 5 accordion items visible, all collapsed by default
-- [ ] Click accordion item → expands; click again → collapses
-- [ ] Keyboard: Tab to accordion trigger → Enter → expands; Escape or Enter again → collapses
-- [ ] Dark mode: accordion items use surface token, not hardcoded white
-- [ ] No decorative animations beyond accordion open/close transition; reduced-motion: open DevTools → Rendering → Emulate prefers-reduced-motion: reduce → accordion still opens/closes without jarring flash
-- [ ] axe DevTools — zero critical/serious violations on Process and FAQ sections
-- [ ] `pnpm build` exits 0
+- [x] `pnpm dev` — scroll to Process: 4 numbered steps visible, lucide icons render
+- [x] FAQ section: 5 accordion items visible, all collapsed by default
+- [x] Click accordion item → expands; click again → collapses
+- [x] Keyboard: Tab to accordion trigger → Enter → expands; Escape or Enter again → collapses
+- [x] Dark mode: accordion items use surface token, not hardcoded white
+- [x] No decorative animations beyond accordion open/close transition; reduced-motion: open DevTools → Rendering → Emulate prefers-reduced-motion: reduce → accordion still opens/closes without jarring flash
+- [x] axe DevTools — zero critical/serious violations on Process and FAQ sections
+- [x] `pnpm build` exits 0
 
 **Phase review:**
-- [ ] All steps completed and checked off
-- [ ] Commit message follows conventional commits
-- [ ] No dead/commented-out code introduced
-- [ ] No new dependencies added beyond what the phase requires (no animation libs beyond shadcn/Radix defaults)
-- [ ] CLAUDE.md invariants respected (pnpm only; reuse shadcn Accordion; no animation libs)
-- [ ] README updated alongside code changes
+- [x] All steps completed and checked off
+- [x] Commit message follows conventional commits
+- [x] No dead/commented-out code introduced
+- [x] No new dependencies added beyond what the phase requires (no animation libs beyond shadcn/Radix defaults)
+- [x] CLAUDE.md invariants respected (pnpm only; reuse shadcn Accordion; no animation libs)
+- [x] README updated alongside code changes
 
 ---
 
