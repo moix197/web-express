@@ -11,7 +11,7 @@ import { NAV_LINKS } from "@/components/layout/nav-links"
 import { useActiveSection } from "@/hooks/useActiveSection"
 
 const ctaHref = buildWhatsAppUrl("", RESERVE_CALL_WA_MESSAGE, siteConfig)
-const SECTION_IDS = ["inicio", "servicios", "proceso", "faq", "contacto"]
+const SECTION_IDS = NAV_LINKS.map((l) => l.href.slice(1))
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)

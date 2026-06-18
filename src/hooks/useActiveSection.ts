@@ -20,6 +20,13 @@ export function useActiveSection(ids: string[]): string {
   useEffect(() => {
     const intersecting = new Set<string>()
 
+    function recompute() {
+      const isAtBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 4
+      setActiveId(getActiveSectionId([...intersecting], ids, isAtBottom))
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -29,12 +36,7 @@ export function useActiveSection(ids: string[]): string {
             intersecting.delete(entry.target.id)
           }
         }
-        const isAtBottom =
-          window.scrollY + window.innerHeight >=
-          document.documentElement.scrollHeight - 4
-        setActiveId(
-          getActiveSectionId([...intersecting], ids, isAtBottom),
-        )
+        recompute()
       },
       { rootMargin: "-80px 0px -60% 0px" },
     )
@@ -44,8 +46,11 @@ export function useActiveSection(ids: string[]): string {
       if (el) observer.observe(el)
     }
 
+    window.addEventListener("scroll", recompute, { passive: true })
+
     return () => {
       observer.disconnect()
+      window.removeEventListener("scroll", recompute)
     }
   }, [ids])
 
