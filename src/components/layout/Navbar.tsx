@@ -33,7 +33,7 @@ export function Navbar() {
       role="banner"
       className={cn(
         "sticky top-0 z-40 h-20",
-        "relative bg-background/80 backdrop-blur-md border-b border-border",
+        "bg-background/80 backdrop-blur-md border-b border-border",
       )}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-8">
@@ -65,8 +65,10 @@ export function Navbar() {
         </div>
 
         {/* Hamburger button */}
-        <button
+        <Button
           ref={hamburgerRef}
+          variant="ghost"
+          size="icon-sm"
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
           aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
@@ -74,7 +76,7 @@ export function Navbar() {
           onClick={() => setIsOpen((v) => !v)}
         >
           {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
+        </Button>
       </div>
 
       {/* Mobile dropdown panel */}
