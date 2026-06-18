@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js
+.next/
+out/
+build/
+next-env.d.ts
+
+# Environment
+.env*.local
+.env
+
+# Python (ui-ux-pro-max skill cache)
+__pycache__/
+*.pyc
+
+# Vercel
+.vercel/
+
+# Misc
+.DS_Store
+*.log
