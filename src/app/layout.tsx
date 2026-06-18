@@ -5,6 +5,7 @@ import { siteConfig } from "@/content/site"
 import { services } from "@/content/services"
 import { buildLocalBusinessSchema, buildServiceSchema } from "@/lib/schema"
 import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton"
+import { Navbar } from "@/components/layout/Navbar"
 import "./globals.css"
 
 const inter = Inter({
@@ -59,6 +60,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
           <WhatsAppFloatingButton />
         </ThemeProvider>

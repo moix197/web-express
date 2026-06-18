@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+html {
+  scroll-padding-top: 5rem;
+  scroll-behavior: smooth;
+}
+
 /*
   web-express design tokens.
 
@@ -239,5 +244,9 @@
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

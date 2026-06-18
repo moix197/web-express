@@ -6,7 +6,7 @@ export function Hero() {
   const waHref = buildWhatsAppUrl("", RESERVE_CALL_WA_MESSAGE, siteConfig)
 
   return (
-    <section className="flex min-h-dvh flex-col items-center justify-center px-4 py-16 sm:px-8">
+    <section id="inicio" className="flex min-h-dvh flex-col items-center justify-center px-4 py-16 sm:px-8">
       <div className="mx-auto w-full max-w-prose text-center">
         {/* Eyebrow */}
         <p className="mb-4 text-sm font-medium uppercase tracking-widest text-accent sm:mb-6">
