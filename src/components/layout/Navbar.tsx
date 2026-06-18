@@ -8,12 +8,15 @@ import { buildWhatsAppUrl, RESERVE_CALL_WA_MESSAGE } from "@/lib/contact"
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/content/site"
 import { NAV_LINKS } from "@/components/layout/nav-links"
+import { useActiveSection } from "@/hooks/useActiveSection"
 
 const ctaHref = buildWhatsAppUrl("", RESERVE_CALL_WA_MESSAGE, siteConfig)
+const SECTION_IDS = ["inicio", "servicios", "proceso", "faq", "contacto"]
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const hamburgerRef = useRef<HTMLButtonElement>(null)
+  const activeId = useActiveSection(SECTION_IDS)
 
   useEffect(() => {
     function handler(e: KeyboardEvent) {
@@ -47,11 +50,24 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <nav aria-label="Navegación principal" className="hidden md:flex gap-6">
-          {NAV_LINKS.map((link) => (
-            <Button key={link.href} variant="ghost" size="sm" asChild>
-              <a href={link.href}>{link.label}</a>
-            </Button>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const active = activeId === link.href.slice(1)
+            return (
+              <Button key={link.href} variant="ghost" size="sm" asChild>
+                <a
+                  href={link.href}
+                  aria-current={active ? "true" : undefined}
+                  className={cn(
+                    active
+                      ? "text-foreground underline decoration-2 underline-offset-4"
+                      : "text-muted-foreground",
+                  )}
+                >
+                  {link.label}
+                </a>
+              </Button>
+            )
+          })}
         </nav>
 
         {/* Desktop actions */}
@@ -87,13 +103,25 @@ export function Navbar() {
           isOpen ? "flex" : "hidden",
         )}
       >
-        {NAV_LINKS.map((link) => (
-          <Button key={link.href} variant="ghost" size="sm" asChild>
-            <a href={link.href} onClick={() => setIsOpen(false)}>
-              {link.label}
-            </a>
-          </Button>
-        ))}
+        {NAV_LINKS.map((link) => {
+          const active = activeId === link.href.slice(1)
+          return (
+            <Button key={link.href} variant="ghost" size="sm" asChild>
+              <a
+                href={link.href}
+                aria-current={active ? "true" : undefined}
+                className={cn(
+                  active
+                    ? "text-foreground underline decoration-2 underline-offset-4"
+                    : "text-muted-foreground",
+                )}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </a>
+            </Button>
+          )
+        })}
         <Button asChild variant="default" size="default">
           <a
             href={ctaHref}

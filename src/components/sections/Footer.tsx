@@ -1,14 +1,7 @@
 import { Globe, AtSign, Link } from "lucide-react"
 import { siteConfig } from "@/content/site"
 import { cn } from "@/lib/utils"
-
-const NAV_LINKS = [
-  { label: "Inicio", href: "#" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proceso", href: "#proceso" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contacto", href: "#contacto" },
-] as const
+import { NAV_LINKS } from "@/components/layout/nav-links"
 
 const SOCIAL_LINKS = [
   { label: "GitHub", href: siteConfig.social.github, Icon: Globe },
