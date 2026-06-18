@@ -38,7 +38,7 @@ export function Navbar() {
 
         {/* Desktop actions */}
         <div className="hidden md:flex items-center gap-3">
-          <Button asChild variant="default" size="sm">
+          <Button asChild variant="default" size="default">
             <a href={ctaHref} target="_blank" rel="noopener noreferrer">
               Reservá una llamada
             </a>
