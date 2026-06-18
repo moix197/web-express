@@ -70,16 +70,17 @@ automatically.
 - `src/components/ui/ThemeToggle.tsx` — light/dark toggle built on next-themes.
   Uses the required mounted-guard (returns `null` until mounted) and
   `resolvedTheme` to avoid an SSR/client hydration mismatch.
-- `src/hooks/useActiveSection.ts` — scroll-spy hook. Takes section `ids` and uses
-  an `IntersectionObserver` whose `rootMargin` accounts for the 80px navbar.
-  `getActiveSectionId` is the unit-tested pure helper; it accepts `isAtBottom` for
-  the bottom-of-page Contacto fallback.
+- `src/hooks/useActiveSection.ts` — scroll-spy hook. Takes section `ids` and, on
+  rAF-throttled scroll/resize, marks active the last section whose top edge has
+  crossed a line at `NAVBAR_HEIGHT + 30vh`. `getActiveSectionId` is the
+  unit-tested pure helper; it accepts `isAtBottom` for the bottom-of-page Contacto
+  fallback.
 
 **Navbar height is a single source of truth.** The scroll offset
 (`scroll-padding-top: 5rem` + `scroll-behavior: smooth` in
 `src/app/globals.css`) is tied to the navbar height (`h-20`). If the navbar height
 changes, update all three together: `scroll-padding-top` (globals.css), the
-`h-20` class on the `<header>` (Navbar.tsx), and `rootMargin`
+`h-20` class on the `<header>` (Navbar.tsx), and `NAVBAR_HEIGHT`
 (useActiveSection.ts).
 
 ## Deploy

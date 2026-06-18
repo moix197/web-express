@@ -23,7 +23,7 @@ Stack facts (already resolved — do not re-explore):
 - Transitions: only `transition-colors duration-150` in the project. No animation libraries.
 - next-themes v0.4.6: ThemeToggle requires mounted-guard (useEffect + `mounted` state) to avoid hydration mismatch.
 - Footer (`src/components/sections/Footer.tsx`): defines Inicio link as `href="#"` — Phase 3 refactors Footer to import `NAV_LINKS` from `src/components/layout/nav-links.ts`, which fixes the `href="#"` automatically via the shared constant.
-- Single source of truth for height coupling: navbar height is `h-20` (5rem / 80px). `scroll-padding-top: 5rem` in globals.css and `rootMargin: '-80px 0px -60% 0px'` in `useActiveSection.ts` both derive from this. If navbar height changes, update all three locations.
+- Single source of truth for height coupling: navbar height is `h-20` (5rem / 80px). `scroll-padding-top: 5rem` in globals.css and the `NAVBAR_HEIGHT = 80` constant in `useActiveSection.ts` both derive from this. If navbar height changes, update all three locations. (NOTE: the scroll-spy was reworked post-implementation from an `IntersectionObserver` to an rAF-throttled `getBoundingClientRect` geometry check — see commit `8db3251`; the active section is the last one whose top crosses `NAVBAR_HEIGHT + 30vh`.)
 
 ---
 
@@ -89,15 +89,15 @@ Phase 0 exception: the branch `feat/web-express-landing` already exists and was 
 | modify | `src/components/sections/Hero.tsx` | Add `id="inicio"` to the outermost `<section>` element |
 
 **Steps:**
-- [ ] Create `src/components/ui/ThemeToggle.tsx` — `"use client"`; import `useTheme` from `next-themes`; use the mounted-guard pattern exactly: `const [mounted, setMounted] = useState(false); useEffect(() => { setMounted(true); }, []); if (!mounted) return null;` — this is the required next-themes hydration guard; rendering before mount would cause a server/client mismatch because `useTheme()` returns `undefined` on the server; render shadcn `Button` size `icon-sm` with lucide `Sun` when theme is `"dark"`, `Moon` when `"light"`; `aria-label="Cambiar tema"` — icon-only buttons MUST have an aria-label; without it, screen readers announce only the SVG title or nothing; `aria-label='Cambiar tema'` satisfies WCAG 2.1 SC 4.1.2; `onClick` toggles between `"light"` and `"dark"`; do NOT use `text-accent` on the toggle label or any small text — it fails WCAG AA on both backgrounds; use `text-foreground` for any labels
-- [ ] Create directory `src/components/layout/`
-- [ ] Create `src/components/layout/nav-links.ts` — `export const NAV_LINKS: ReadonlyArray<{ label: string; href: string }> = [{ label: "Inicio", href: "#inicio" }, { label: "Servicios", href: "#servicios" }, { label: "Proceso", href: "#proceso" }, { label: "FAQ", href: "#faq" }, { label: "Contacto", href: "#contacto" }]`
-- [ ] Create `src/components/layout/Navbar.tsx` — `"use client"`; import `NAV_LINKS` from `src/components/layout/nav-links.ts` (do NOT redefine inline); import `buildWhatsAppUrl`, `RESERVE_CALL_WA_MESSAGE` from `src/lib/contact.ts`; import `siteConfig` from `src/content/site.ts`; import shadcn `Button`; import `cn` from `src/lib/utils`; import `ThemeToggle` from `src/components/ui/ThemeToggle`; render `<header role="banner">` — the `role="banner"` is implicit on a top-level `<header>`, but confirm it renders as a landmark by running axe — with `sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border`; the inner `<nav>` must have `aria-label="Navegación principal"` so it is distinguished from any other `<nav>` on the page; brand = `<a href="#inicio">{siteConfig.name}</a>`; desktop nav = `<nav aria-label="Navegación principal" className="hidden md:flex gap-6">` mapping NAV_LINKS to ghost Button as `<a>`; nav link `<a>` elements styled as ghost Button already inherit shadcn's `focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2` — confirm this is preserved and not overridden by custom classes; do NOT add a custom `outline` that bypasses the design system; CTA = default Button as `<a href={buildWhatsAppUrl("", RESERVE_CALL_WA_MESSAGE, siteConfig)} target="_blank" rel="noopener noreferrer">`; render `<ThemeToggle />`; no hamburger yet
-- [ ] Modify `src/app/layout.tsx`: import `Navbar` from `src/components/layout/Navbar`; render `<Navbar />` as first child inside `<ThemeProvider>`, before `{children}`
-- [ ] Modify `src/app/globals.css`: add `scroll-padding-top: 5rem; scroll-behavior: smooth;` to the `html` selector (add block if not present) — `scroll-padding-top: 5rem` is tied to navbar height `h-20`; see "Single source of truth for height coupling" note in Context; this also prevents the sticky navbar from overlapping the focus outline of anchored headings — if section headings use `focus-visible` outlines, those are now clear of the bar; if navbar height changes, update `scroll-padding-top` here, the `h-20` class on `<header>`, and `rootMargin` in `useActiveSection.ts` together; in the existing `@media (prefers-reduced-motion: reduce)` block, add `scroll-behavior: auto;` — this overrides the `scroll-behavior: smooth` set on `html`, so anchor navigation is instant for users who prefer no motion; this is in addition to the `animation-duration: 0.01ms` reset already present
-- [ ] Modify `src/components/sections/Hero.tsx`: add `id="inicio"` to the outermost `<section>` element
-- [ ] No new pnpm dependencies introduced
-- [ ] Run `pnpm build` — confirm exit 0, zero TypeScript errors
+- [x] Create `src/components/ui/ThemeToggle.tsx` — `"use client"`; import `useTheme` from `next-themes`; use the mounted-guard pattern exactly: `const [mounted, setMounted] = useState(false); useEffect(() => { setMounted(true); }, []); if (!mounted) return null;` — this is the required next-themes hydration guard; rendering before mount would cause a server/client mismatch because `useTheme()` returns `undefined` on the server; render shadcn `Button` size `icon-sm` with lucide `Sun` when theme is `"dark"`, `Moon` when `"light"`; `aria-label="Cambiar tema"` — icon-only buttons MUST have an aria-label; without it, screen readers announce only the SVG title or nothing; `aria-label='Cambiar tema'` satisfies WCAG 2.1 SC 4.1.2; `onClick` toggles between `"light"` and `"dark"`; do NOT use `text-accent` on the toggle label or any small text — it fails WCAG AA on both backgrounds; use `text-foreground` for any labels
+- [x] Create directory `src/components/layout/`
+- [x] Create `src/components/layout/nav-links.ts` — `export const NAV_LINKS: ReadonlyArray<{ label: string; href: string }> = [{ label: "Inicio", href: "#inicio" }, { label: "Servicios", href: "#servicios" }, { label: "Proceso", href: "#proceso" }, { label: "FAQ", href: "#faq" }, { label: "Contacto", href: "#contacto" }]`
+- [x] Create `src/components/layout/Navbar.tsx` — `"use client"`; import `NAV_LINKS` from `src/components/layout/nav-links.ts` (do NOT redefine inline); import `buildWhatsAppUrl`, `RESERVE_CALL_WA_MESSAGE` from `src/lib/contact.ts`; import `siteConfig` from `src/content/site.ts`; import shadcn `Button`; import `cn` from `src/lib/utils`; import `ThemeToggle` from `src/components/ui/ThemeToggle`; render `<header role="banner">` — the `role="banner"` is implicit on a top-level `<header>`, but confirm it renders as a landmark by running axe — with `sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border`; the inner `<nav>` must have `aria-label="Navegación principal"` so it is distinguished from any other `<nav>` on the page; brand = `<a href="#inicio">{siteConfig.name}</a>`; desktop nav = `<nav aria-label="Navegación principal" className="hidden md:flex gap-6">` mapping NAV_LINKS to ghost Button as `<a>`; nav link `<a>` elements styled as ghost Button already inherit shadcn's `focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2` — confirm this is preserved and not overridden by custom classes; do NOT add a custom `outline` that bypasses the design system; CTA = default Button as `<a href={buildWhatsAppUrl("", RESERVE_CALL_WA_MESSAGE, siteConfig)} target="_blank" rel="noopener noreferrer">`; render `<ThemeToggle />`; no hamburger yet
+- [x] Modify `src/app/layout.tsx`: import `Navbar` from `src/components/layout/Navbar`; render `<Navbar />` as first child inside `<ThemeProvider>`, before `{children}`
+- [x] Modify `src/app/globals.css`: add `scroll-padding-top: 5rem; scroll-behavior: smooth;` to the `html` selector (add block if not present) — `scroll-padding-top: 5rem` is tied to navbar height `h-20`; see "Single source of truth for height coupling" note in Context; this also prevents the sticky navbar from overlapping the focus outline of anchored headings — if section headings use `focus-visible` outlines, those are now clear of the bar; if navbar height changes, update `scroll-padding-top` here, the `h-20` class on `<header>`, and `rootMargin` in `useActiveSection.ts` together; in the existing `@media (prefers-reduced-motion: reduce)` block, add `scroll-behavior: auto;` — this overrides the `scroll-behavior: smooth` set on `html`, so anchor navigation is instant for users who prefer no motion; this is in addition to the `animation-duration: 0.01ms` reset already present
+- [x] Modify `src/components/sections/Hero.tsx`: add `id="inicio"` to the outermost `<section>` element
+- [x] No new pnpm dependencies introduced
+- [x] Run `pnpm build` — confirm exit 0, zero TypeScript errors
 
 **Tests:**
 
@@ -121,13 +121,13 @@ No automated tests — justified because: Navbar and ThemeToggle are pure presen
 - [ ] All Steps and Verification checkboxes above ticked in the plan file
 - [ ] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
 - [ ] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
-- [ ] Code-reviewer agent has verified this phase
-- [ ] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
-- [ ] Tests for this phase written and passing (see Tests subsection above) — or no-tests justification accepted
-- [ ] Documentation updated (see Documentation section)
-- [ ] Orchestrator (user) has verified and approved this phase
-- [ ] Changes committed: `feat(navbar): add sticky desktop navbar with ThemeToggle, anchor links, and scroll globals`
-- [ ] Phase marked complete
+- [x] Code-reviewer agent has verified this phase
+- [x] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
+- [x] Tests for this phase written and passing (see Tests subsection above) — or no-tests justification accepted
+- [x] Documentation updated (see Documentation section)
+- [x] Orchestrator (user) has verified and approved this phase
+- [x] Changes committed: `feat(navbar): add sticky desktop navbar with ThemeToggle, anchor links, and scroll globals`
+- [x] Phase marked complete
 
 ---
 
@@ -148,14 +148,14 @@ No automated tests — justified because: Navbar and ThemeToggle are pure presen
 | modify | `src/components/layout/Navbar.tsx` | Add `useState` for `isOpen`; hamburger button (lucide `Menu` / `X`, `aria-expanded`, `aria-controls="mobile-menu"`, dynamic `aria-label`); mobile panel `div` (`id="mobile-menu"`) with links + CTA + ThemeToggle; Escape key handler with focus return via `useRef`; close-on-link-click; `md:hidden` on hamburger and panel |
 
 **Steps:**
-- [ ] In `Navbar.tsx` (already a client component), add `const [isOpen, setIsOpen] = useState(false)` and `const hamburgerRef = useRef<HTMLButtonElement>(null)`
-- [ ] Add hamburger button: `<button ref={hamburgerRef} aria-expanded={isOpen} aria-controls="mobile-menu" aria-label={isOpen ? "Cerrar menú" : "Abrir menú"} className="md:hidden" onClick={() => setIsOpen(v => !v)}>` — render lucide `X` when `isOpen`, `Menu` when closed; the `aria-label` changes dynamically so screen readers announce the current action
-- [ ] Add mobile dropdown panel: `<div id="mobile-menu" className={cn("md:hidden absolute top-full left-0 right-0 border-b border-border bg-background/95 backdrop-blur-md flex-col gap-2 px-4 py-4", isOpen ? "flex" : "hidden")}>` — containing NAV_LINKS mapped to ghost Button as `<a>` (each `onClick={() => setIsOpen(false)}`), CTA Button (same `onClick`), and `<ThemeToggle />`; each nav link `<a>` has `onClick={() => setIsOpen(false)}` so navigation and panel-close happen atomically — the link navigates (native anchor behavior) and the state update closes the panel
-- [ ] Add Escape key handler via `useEffect`: register `keydown` listener on `document`; when `e.key === "Escape"` and `isOpen`, call `setIsOpen(false)` and `hamburgerRef.current?.focus()`; the `useEffect` cleanup MUST call `document.removeEventListener('keydown', handler)` — otherwise the handler leaks and continues firing after the component unmounts; DevTools: confirm no event listener leak — open and close panel 5 times rapidly, then unmount (navigate away) and confirm the handler is removed
-- [ ] Ensure panel items are in DOM order matching visual order (links → CTA → toggle) so Tab navigates naturally without a focus trap
-- [ ] Apply `relative` directly to `<header>` — no extra wrapper div needed; the `<header>` is already the containing block; `absolute top-full` on the panel will position it flush below the bar; this avoids an extra DOM node
-- [ ] No new pnpm dependencies
-- [ ] Run `pnpm build` — confirm exit 0
+- [x] In `Navbar.tsx` (already a client component), add `const [isOpen, setIsOpen] = useState(false)` and `const hamburgerRef = useRef<HTMLButtonElement>(null)`
+- [x] Add hamburger button: `<button ref={hamburgerRef} aria-expanded={isOpen} aria-controls="mobile-menu" aria-label={isOpen ? "Cerrar menú" : "Abrir menú"} className="md:hidden" onClick={() => setIsOpen(v => !v)}>` — render lucide `X` when `isOpen`, `Menu` when closed; the `aria-label` changes dynamically so screen readers announce the current action
+- [x] Add mobile dropdown panel: `<div id="mobile-menu" className={cn("md:hidden absolute top-full left-0 right-0 border-b border-border bg-background/95 backdrop-blur-md flex-col gap-2 px-4 py-4", isOpen ? "flex" : "hidden")}>` — containing NAV_LINKS mapped to ghost Button as `<a>` (each `onClick={() => setIsOpen(false)}`), CTA Button (same `onClick`), and `<ThemeToggle />`; each nav link `<a>` has `onClick={() => setIsOpen(false)}` so navigation and panel-close happen atomically — the link navigates (native anchor behavior) and the state update closes the panel
+- [x] Add Escape key handler via `useEffect`: register `keydown` listener on `document`; when `e.key === "Escape"` and `isOpen`, call `setIsOpen(false)` and `hamburgerRef.current?.focus()`; the `useEffect` cleanup MUST call `document.removeEventListener('keydown', handler)` — otherwise the handler leaks and continues firing after the component unmounts; DevTools: confirm no event listener leak — open and close panel 5 times rapidly, then unmount (navigate away) and confirm the handler is removed
+- [x] Ensure panel items are in DOM order matching visual order (links → CTA → toggle) so Tab navigates naturally without a focus trap
+- [x] ~~Apply `relative` directly to `<header>`~~ — CORRECTION (code review): the `<header>` is already `sticky`, which establishes the containing block for the `absolute top-full` panel. `relative` is redundant and conflicts with `sticky`; do NOT add it. No extra wrapper div needed.
+- [x] No new pnpm dependencies
+- [x] Run `pnpm build` — confirm exit 0
 
 **Tests:**
 
@@ -179,13 +179,13 @@ No automated tests — justified because: the hamburger panel is purely presenta
 - [ ] All Steps and Verification checkboxes above ticked in the plan file
 - [ ] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
 - [ ] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
-- [ ] Code-reviewer agent has verified this phase
-- [ ] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
-- [ ] Tests for this phase written and passing (see Tests subsection above) — or no-tests justification accepted
-- [ ] Documentation updated (see Documentation section)
-- [ ] Orchestrator (user) has verified and approved this phase
-- [ ] Changes committed: `feat(navbar): add mobile hamburger dropdown with accessibility (aria, Escape, focus)`
-- [ ] Phase marked complete
+- [x] Code-reviewer agent has verified this phase
+- [x] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
+- [x] Tests for this phase written and passing (see Tests subsection above) — or no-tests justification accepted
+- [x] Documentation updated (see Documentation section)
+- [x] Orchestrator (user) has verified and approved this phase
+- [x] Changes committed: `feat(navbar): add mobile hamburger dropdown with accessibility (aria, Escape, focus)`
+- [x] Phase marked complete
 
 ---
 
@@ -209,14 +209,14 @@ No automated tests — justified because: the hamburger panel is purely presenta
 | modify | `src/components/sections/Footer.tsx` | Refactor to import `NAV_LINKS` from `src/components/layout/nav-links.ts`; removes hardcoded list and fixes Inicio href to `"#inicio"` automatically |
 
 **Steps:**
-- [ ] Create `src/hooks/useActiveSection.ts` — `"use client"`; extract a named pure function `export function getActiveSectionId(intersectingIds: string[], orderedIds: string[], isAtBottom: boolean): string` — when `isAtBottom` is true, return `orderedIds[orderedIds.length - 1]` immediately; otherwise return the first entry in `orderedIds` that is present in `intersectingIds`, falling back to `orderedIds[0]` when none intersect; edge at very top: when `scrollY === 0` (or all sections are below the fold), none may be intersecting; `getActiveSectionId` returns `orderedIds[0]` (`'inicio'`) by its fallback — this is the desired behavior; edge at very bottom: the Contacto section may be too short to cross the `-60% 0px` bottom threshold on a tall viewport; fallback: in `useActiveSection`, after the observer callback, additionally check `window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4` and if true, pass `isAtBottom: true` to `getActiveSectionId` which returns the last section id; implement hook `useActiveSection(ids: string[]): string` that sets up `IntersectionObserver` with `rootMargin: "-80px 0px -60% 0px"`, observes each id, tracks intersecting ids in a `Set`, computes `isAtBottom` in the observer callback (and also on `scroll` event or within the same callback), calls `getActiveSectionId(intersectingIds, ids, isAtBottom)` on change, initializes `activeId` to `ids[0]`; call `observer.disconnect()` inside the `useEffect` cleanup return — failure to do so leaks observer callbacks and causes stale state updates on unmounted components
-- [ ] Create `src/lib/__tests__/useActiveSection.test.ts` — test `getActiveSectionId`: given `["servicios"]` intersecting, ordered `["inicio","servicios","proceso","faq","contacto"]`, `isAtBottom: false`, returns `"servicios"`; given empty intersecting set and `isAtBottom: false`, returns `"inicio"` (first ordered); given multiple intersecting ids and `isAtBottom: false`, returns the first in ordered list; bottom-of-page fallback: when `isAtBottom` is true, returns the last ordered id regardless of intersecting set
-- [ ] In `Navbar.tsx`, import `useActiveSection` and call it with `["inicio", "servicios", "proceso", "faq", "contacto"]`; for each nav link `<a>`, derive active state via `activeId === link.href.slice(1)`; apply `text-foreground underline decoration-2 underline-offset-4` when active, `text-muted-foreground` when inactive; use `cn` to compose with existing ghost Button classes; active link receives `aria-current={activeId === link.href.slice(1) ? 'true' : undefined}` — since this is a single-page app with hash navigation, use `aria-current='true'` rather than `aria-current='page'`; `aria-current='page'` would be semantically incorrect for in-page anchors
-- [ ] Apply the same active/inactive logic and `aria-current` to mobile panel links
-- [ ] Brand `<a href="#inicio">` does not receive active styling or `aria-current` — it is the brand, not a nav entry
-- [ ] Refactor `src/components/sections/Footer.tsx` to import `NAV_LINKS` from `src/components/layout/nav-links.ts`; remove the hardcoded nav-link list; map `NAV_LINKS` in Footer — `href="#inicio"` is now automatic from the shared constant
-- [ ] No new pnpm dependencies; `IntersectionObserver` is a browser-native API
-- [ ] Run `pnpm build` — confirm exit 0
+- [x] Create `src/hooks/useActiveSection.ts` — `"use client"`; extract a named pure function `export function getActiveSectionId(intersectingIds: string[], orderedIds: string[], isAtBottom: boolean): string` — when `isAtBottom` is true, return `orderedIds[orderedIds.length - 1]` immediately; otherwise return the first entry in `orderedIds` that is present in `intersectingIds`, falling back to `orderedIds[0]` when none intersect; edge at very top: when `scrollY === 0` (or all sections are below the fold), none may be intersecting; `getActiveSectionId` returns `orderedIds[0]` (`'inicio'`) by its fallback — this is the desired behavior; edge at very bottom: the Contacto section may be too short to cross the `-60% 0px` bottom threshold on a tall viewport; fallback: in `useActiveSection`, after the observer callback, additionally check `window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4` and if true, pass `isAtBottom: true` to `getActiveSectionId` which returns the last section id; implement hook `useActiveSection(ids: string[]): string` that sets up `IntersectionObserver` with `rootMargin: "-80px 0px -60% 0px"`, observes each id, tracks intersecting ids in a `Set`, computes `isAtBottom` in the observer callback (and also on `scroll` event or within the same callback), calls `getActiveSectionId(intersectingIds, ids, isAtBottom)` on change, initializes `activeId` to `ids[0]`; call `observer.disconnect()` inside the `useEffect` cleanup return — failure to do so leaks observer callbacks and causes stale state updates on unmounted components
+- [x] Create `src/lib/__tests__/useActiveSection.test.ts` — test `getActiveSectionId`: given `["servicios"]` intersecting, ordered `["inicio","servicios","proceso","faq","contacto"]`, `isAtBottom: false`, returns `"servicios"`; given empty intersecting set and `isAtBottom: false`, returns `"inicio"` (first ordered); given multiple intersecting ids and `isAtBottom: false`, returns the first in ordered list; bottom-of-page fallback: when `isAtBottom` is true, returns the last ordered id regardless of intersecting set
+- [x] In `Navbar.tsx`, import `useActiveSection` and call it with `["inicio", "servicios", "proceso", "faq", "contacto"]`; for each nav link `<a>`, derive active state via `activeId === link.href.slice(1)`; apply `text-foreground underline decoration-2 underline-offset-4` when active, `text-muted-foreground` when inactive; use `cn` to compose with existing ghost Button classes; active link receives `aria-current={activeId === link.href.slice(1) ? 'true' : undefined}` — since this is a single-page app with hash navigation, use `aria-current='true'` rather than `aria-current='page'`; `aria-current='page'` would be semantically incorrect for in-page anchors
+- [x] Apply the same active/inactive logic and `aria-current` to mobile panel links
+- [x] Brand `<a href="#inicio">` does not receive active styling or `aria-current` — it is the brand, not a nav entry
+- [x] Refactor `src/components/sections/Footer.tsx` to import `NAV_LINKS` from `src/components/layout/nav-links.ts`; remove the hardcoded nav-link list; map `NAV_LINKS` in Footer — `href="#inicio"` is now automatic from the shared constant
+- [x] No new pnpm dependencies; `IntersectionObserver` is a browser-native API
+- [x] Run `pnpm build` — confirm exit 0
 
 **Tests:**
 
@@ -243,13 +243,13 @@ Note: the `IntersectionObserver` wiring cannot be unit-tested without a DOM envi
 - [ ] All Steps and Verification checkboxes above ticked in the plan file
 - [ ] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
 - [ ] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
-- [ ] Code-reviewer agent has verified this phase
-- [ ] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
-- [ ] Tests for this phase written and passing (see Tests subsection above) — or no-tests justification accepted
-- [ ] Documentation updated (see Documentation section)
-- [ ] Orchestrator (user) has verified and approved this phase
-- [ ] Changes committed: `feat(navbar): add IntersectionObserver scroll-spy active-link highlight`
-- [ ] Phase marked complete
+- [x] Code-reviewer agent has verified this phase
+- [x] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
+- [x] Tests for this phase written and passing (see Tests subsection above) — or no-tests justification accepted
+- [x] Documentation updated (see Documentation section)
+- [x] Orchestrator (user) has verified and approved this phase
+- [x] Changes committed: `feat(navbar): add IntersectionObserver scroll-spy active-link highlight`
+- [x] Phase marked complete
 
 ---
 
