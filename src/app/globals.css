@@ -80,6 +80,78 @@
   --ring: #c9ae7b;
 }
 
+/*
+  .section-invert — token-remapping approach for strong section alternation.
+
+  In light mode  → remaps to the dark palette (dark bg, light text).
+  In dark  mode  → remaps to the light palette (light bg, dark text).
+  Gold accent (#c9ae7b) is brand-constant and kept in both; it is only used
+  on fills/borders/display text where it has adequate contrast on both surfaces.
+
+  Child components using token classes (bg-surface, text-muted-foreground,
+  border-border, text-foreground, etc.) adapt automatically because the
+  underlying CSS custom properties are overridden at the section scope.
+*/
+.section-invert {
+  /* Same values as .dark — dark surface for light-mode pages */
+  --background: #1d1d1d;
+  --foreground: #ece8e1;
+  --surface: #262626;
+  --surface-foreground: #ece8e1;
+  --card: #262626;
+  --card-foreground: #ece8e1;
+  --popover: #262626;
+  --popover-foreground: #ece8e1;
+
+  --accent: #c9ae7b;
+  --accent-foreground: #1d1d1d;
+
+  --primary: #ece8e1;
+  --primary-foreground: #1d1d1d;
+
+  --secondary: #2e2e2e;
+  --secondary-foreground: #ece8e1;
+  --muted: #2e2e2e;
+  --muted-foreground: #a39c91;
+
+  --destructive: #f2655c;
+  --destructive-foreground: #1d1d1d;
+
+  --border: #36332e;
+  --input: #36332e;
+  --ring: #c9ae7b;
+}
+
+.dark .section-invert {
+  /* Same values as :root — light surface for dark-mode pages */
+  --background: #f7f4ef;
+  --foreground: #232020;
+  --surface: #ffffff;
+  --surface-foreground: #232020;
+  --card: #ffffff;
+  --card-foreground: #232020;
+  --popover: #ffffff;
+  --popover-foreground: #232020;
+
+  --accent: #c9ae7b;
+  --accent-foreground: #232020;
+
+  --primary: #232020;
+  --primary-foreground: #f7f4ef;
+
+  --secondary: #efe9e0;
+  --secondary-foreground: #232020;
+  --muted: #efe9e0;
+  --muted-foreground: #6b6258;
+
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
+
+  --border: #e2dacb;
+  --input: #e2dacb;
+  --ring: #c9ae7b;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

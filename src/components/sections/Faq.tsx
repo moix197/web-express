@@ -62,7 +62,7 @@ export function Faq() {
           </p>
           <h2
             id="faq-heading"
-            className="font-display text-3xl font-black uppercase leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+            className="font-display text-2xl font-black uppercase leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
           >
             ¿Tenés dudas?
           </h2>

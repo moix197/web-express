@@ -16,7 +16,7 @@ export function Hero() {
         {/* Headline — DM Sans via --font-display, clamped oversized */}
         <h1
           className="mb-6 font-display font-black uppercase leading-[0.9] tracking-tight text-foreground sm:mb-8"
-          style={{ fontSize: "clamp(3rem, 9vw, 7rem)" }}
+          style={{ fontSize: "clamp(2.5rem, 6vw, 4.25rem)" }}
         >
           Tu negocio merece estar en la web
         </h1>
