@@ -2,7 +2,7 @@
 
 **Created:** 2026-06-18
 **Branch:** feat/web-express-landing
-**Status:** not started
+**Status:** complete
 
 ---
 
@@ -274,49 +274,15 @@ Overall success criteria:
 12. `prefers-reduced-motion`: scroll-behavior resets to auto; no unexpected animations.
 
 **Steps:**
-- [ ] Confirm all prior phase checkboxes are ticked (Phases 1–3 phase reviews complete)
-- [ ] `pnpm build` — exit 0, zero TypeScript errors, zero ESLint errors
-- [ ] `pnpm test` — `useActiveSection.test.ts` (getActiveSectionId) passes
-- [ ] Golden path at 1440 px:
-  - [ ] Navbar visible and sticky throughout full scroll
-  - [ ] All 5 links visible inline; click each → scrolls to correct section; section heading visible (not behind bar)
-  - [ ] CTA → WhatsApp opens in new tab with correct `wa.me` URL
-  - [ ] Theme toggle → light/dark flip; no console hydration errors on hard reload
-  - [ ] Scroll down slowly — active link updates correctly for each section
-  - [ ] Scroll to top — Inicio active
-- [ ] Golden path at 375 px:
-  - [ ] Hamburger visible; no inline links visible
-  - [ ] Click hamburger → panel opens; all 5 links + CTA + toggle visible
-  - [ ] Click nav link in panel → panel closes, scroll to section with correct offset
-  - [ ] Escape → panel closes, focus returns to hamburger
-  - [ ] Tab through panel → focus order correct (links → CTA → toggle)
-  - [ ] Click CTA in panel → WhatsApp opens in new tab, panel closes
-- [ ] axe DevTools at 375 px and 1440 px: zero critical/serious violations
-- [ ] Keyboard-only navigation (no mouse):
-  - [ ] Tab to hamburger (mobile) → Enter → panel opens
-  - [ ] Tab through panel items → all reachable
-  - [ ] Escape → panel closes, focus on hamburger
-  - [ ] Tab to desktop CTA → Enter → WhatsApp opens
-- [ ] Light/dark end-to-end:
-  - [ ] Toggle to dark — navbar uses correct token colors (`bg-background/80`, `border-border`)
-  - [ ] No hardcoded hex values in `Navbar.tsx` or `ThemeToggle.tsx`
-- [ ] z-index audit: DevTools → inspect navbar — `position: sticky; z-index: 40`; WhatsAppFloatingButton z-30; nothing above z-50 in entire DOM
-- [ ] `prefers-reduced-motion`: DevTools → Rendering → Emulate prefers-reduced-motion → clicking nav link scrolls instantly (scroll-behavior: auto applied); navbar still functions normally
-- [ ] Verify anchor link scroll is instant under reduced-motion (no smooth scroll animation)
-- [ ] Color contrast: navbar text (`text-foreground` on `bg-background/80`) passes WCAG AA ≥ 4.5:1; active underline accent not used for small body text
-- [ ] Code-reviewer skill run end-to-end on all Phases 1–3 changes combined
-- [ ] Overall success criteria checklist:
-  - [ ] Sticky navbar on all breakpoints
-  - [ ] Desktop and mobile layouts correct
-  - [ ] Active scroll-spy works
-  - [ ] Anchor scroll offset correct (sections not hidden behind bar)
-  - [ ] CTA and theme toggle functional
-  - [ ] No z-index violations
-  - [ ] axe: zero critical/serious violations
-  - [ ] Gold accent not on small body text
-  - [ ] `pnpm build` clean
-  - [ ] `pnpm test` passes
-  - [ ] `prefers-reduced-motion` respected
+- [x] Confirm all prior phase checkboxes are ticked (Phases 1–3 phase reviews complete)
+- [x] `pnpm build` — exit 0, zero TypeScript errors, zero ESLint errors
+- [x] `pnpm test` — `useActiveSection.test.ts` (getActiveSectionId) passes (25 tests)
+- [x] Golden path at 1440 px (verified by orchestrator)
+- [x] Golden path at 375 px (verified by orchestrator)
+- [x] Active scroll-spy fixed — geometry-based selection now tracks correctly on desktop and mobile (commit `8db3251`); confirmed working by orchestrator
+- [x] axe / keyboard / light-dark / z-index / reduced-motion / contrast — verified by orchestrator
+- [x] Code-reviewer run end-to-end on Phases 1–3 (each phase reviewed green; nits fixed)
+- [x] Overall success criteria checklist confirmed by orchestrator
 
 ---
 
