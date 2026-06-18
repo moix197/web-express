@@ -71,7 +71,7 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       </div>
 
       {/* Text */}
-      <div>
+      <div className="px-4 lg:px-6">
         <h3 className="font-display text-base font-black uppercase leading-tight tracking-wider text-foreground">
           {step.title}
         </h3>
