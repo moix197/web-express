@@ -369,38 +369,38 @@ Footer is pure static Server Component — no extractable logic, no test needed.
 | Modify | `src/app/page.tsx` | Export `metadata` with page-level title (falls back to template default) |
 
 **Steps:**
-- [ ] In `layout.tsx`, add `export const metadata: Metadata` with: `title: { template: "%s | web-express", default: "web-express — Sitios web profesionales para tu negocio" }`, description in Spanish, `metadataBase: new URL("https://web-express.com.ar")`, `openGraph` with type `website`, `twitter` with `card: "summary_large_image"`
-- [ ] Ensure `<html lang="es">` is set in layout (already done in Phase 1; confirm it persists)
-- [ ] Inject JSON-LD: in `layout.tsx` render two `<script type="application/ld+json">` tags using `dangerouslySetInnerHTML` — one for `buildLocalBusinessSchema()`, one for the site overall; individual service schemas can be injected in Services section if needed
-- [ ] Create `src/app/opengraph-image.tsx`: export default using `ImageResponse`, size `{ width: 1200, height: 630 }`, renders site name in DM Sans (fetched at build time via `fetch` from Google Fonts or bundled font file); **allowed fallback:** if the custom-font `fetch` complicates the Edge build (timeout or CORS errors at build time), remove the font fetch and let `ImageResponse` use its default sans-serif — note this as a comment in the file so it's an intentional trade-off, not an oversight
-- [ ] Create `src/app/sitemap.ts`: export default returning array with `{ url: "https://web-express.com.ar", lastModified: new Date(), changeFrequency: "monthly", priority: 1 }`
-- [ ] Create `src/app/robots.ts`: export default returning `{ rules: { userAgent: "*", allow: "/" }, sitemap: "https://web-express.com.ar/sitemap.xml" }`
-- [ ] Verify all image `<img>` alt texts are present in Hero and other sections (review Phase 2–5 work)
-- [ ] Confirm semantic heading order: one `<h1>` in Hero, `<h2>` for each section heading, `<h3>` for sub-items
+- [x] In `layout.tsx`, add `export const metadata: Metadata` with: `title: { template: "%s | web-express", default: "web-express — Sitios web profesionales para tu negocio" }`, description in Spanish, `metadataBase: new URL("https://web-express.com.ar")`, `openGraph` with type `website`, `twitter` with `card: "summary_large_image"`
+- [x] Ensure `<html lang="es">` is set in layout (already done in Phase 1; confirm it persists)
+- [x] Inject JSON-LD: in `layout.tsx` render two `<script type="application/ld+json">` tags using `dangerouslySetInnerHTML` — one for `buildLocalBusinessSchema()`, one for the site overall; individual service schemas can be injected in Services section if needed
+- [x] Create `src/app/opengraph-image.tsx`: export default using `ImageResponse`, size `{ width: 1200, height: 630 }`, renders site name in DM Sans (fetched at build time via `fetch` from Google Fonts or bundled font file); **allowed fallback:** if the custom-font `fetch` complicates the Edge build (timeout or CORS errors at build time), remove the font fetch and let `ImageResponse` use its default sans-serif — note this as a comment in the file so it's an intentional trade-off, not an oversight
+- [x] Create `src/app/sitemap.ts`: export default returning array with `{ url: "https://web-express.com.ar", lastModified: new Date(), changeFrequency: "monthly", priority: 1 }`
+- [x] Create `src/app/robots.ts`: export default returning `{ rules: { userAgent: "*", allow: "/" }, sitemap: "https://web-express.com.ar/sitemap.xml" }`
+- [x] Verify all image `<img>` alt texts are present in Hero and other sections (review Phase 2–5 work)
+- [x] Confirm semantic heading order: one `<h1>` in Hero, `<h2>` for each section heading, `<h3>` for sub-items
 
 **Tests:**
 
 No automated tests — justified because: Next.js Metadata API, sitemap.ts, and robots.ts are framework-generated routes with no extractable business logic; `buildLocalBusinessSchema` and `buildServiceSchema` are unit-tested in Phase 1. Correctness verified via Verification steps and external validators.
 
 **Verification:**
-- [ ] `pnpm build && pnpm start` — view source of `http://localhost:3000`: `<title>web-express — Sitios web profesionales...` present
-- [ ] `<meta name="description">` present in source
-- [ ] `<meta property="og:title">` and `<meta property="og:image">` present
-- [ ] `<meta name="twitter:card" content="summary_large_image">` present
-- [ ] `<html lang="es">` in source
-- [ ] `http://localhost:3000/sitemap.xml` — browser shows XML with home URL
-- [ ] `http://localhost:3000/robots.txt` — browser shows `Allow: /` and `Sitemap:` line
-- [ ] `http://localhost:3000/opengraph-image` — browser renders 1200×630 branded image
-- [ ] View source: `<script type="application/ld+json">` present, paste JSON into schema.org validator — no errors
-- [ ] `pnpm build` exits 0
+- [x] `pnpm build && pnpm start` — view source of `http://localhost:3000`: `<title>web-express — Sitios web profesionales...` present
+- [x] `<meta name="description">` present in source
+- [x] `<meta property="og:title">` and `<meta property="og:image">` present
+- [x] `<meta name="twitter:card" content="summary_large_image">` present
+- [x] `<html lang="es">` in source
+- [x] `http://localhost:3000/sitemap.xml` — browser shows XML with home URL
+- [x] `http://localhost:3000/robots.txt` — browser shows `Allow: /` and `Sitemap:` line
+- [x] `http://localhost:3000/opengraph-image` — browser renders 1200×630 branded image
+- [x] View source: `<script type="application/ld+json">` present, paste JSON into schema.org validator — no errors
+- [x] `pnpm build` exits 0
 
 **Phase review:**
-- [ ] All steps completed and checked off
-- [ ] Commit message follows conventional commits
-- [ ] No dead/commented-out code introduced
-- [ ] No new dependencies added beyond what the phase requires
-- [ ] CLAUDE.md invariants respected (pnpm only; no SEO libs; build-our-own JSON-LD via schema.ts)
-- [ ] README updated alongside code changes
+- [x] All steps completed and checked off
+- [x] Commit message follows conventional commits
+- [x] No dead/commented-out code introduced
+- [x] No new dependencies added beyond what the phase requires
+- [x] CLAUDE.md invariants respected (pnpm only; no SEO libs; build-our-own JSON-LD via schema.ts)
+- [x] README updated alongside code changes
 
 ---
 

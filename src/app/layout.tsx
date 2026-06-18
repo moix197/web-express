@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { DM_Sans, Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import { siteConfig } from "@/content/site"
+import { services } from "@/content/services"
+import { buildLocalBusinessSchema, buildServiceSchema } from "@/lib/schema"
 import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton"
 import "./globals.css"
 
@@ -17,9 +19,27 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: siteConfig.metadataBase,
-  title: siteConfig.name,
-  description: siteConfig.tagline,
+  title: {
+    template: `%s | ${siteConfig.name}`,
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+  },
+  description:
+    "Creamos sitios web profesionales, rápidos y optimizados para que tu negocio crezca en internet. Diseño web, tiendas online y branding en Argentina.",
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
+    locale: "es_AR",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  alternates: {
+    canonical: siteConfig.metadataBase.toString(),
+  },
 }
+
+const localBusinessSchema = buildLocalBusinessSchema()
+const servicesSchema = services.map(buildServiceSchema)
 
 export default function RootLayout({
   children,
@@ -42,6 +62,14 @@ export default function RootLayout({
           {children}
           <WhatsAppFloatingButton />
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+        />
       </body>
     </html>
   )
