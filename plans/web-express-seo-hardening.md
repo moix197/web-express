@@ -296,21 +296,21 @@ No automated tests — justified because: all three changes are pure JSX structu
 
 **Steps:**
 
-- [ ] Every preceding phase's Steps/Verification/Phase review checkboxes are ticked in the plan file.
-- [ ] Reviewer handoff prompt emitted in a fenced code block (scoped to end-to-end review).
+- [x] Every preceding phase's Steps/Verification/Phase review checkboxes are ticked in the plan file.
+- [x] Reviewer handoff prompt emitted in a fenced code block (scoped to end-to-end review).
 - [ ] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session.
-- [ ] Code-reviewer agent reviews the entire change end-to-end.
-- [ ] Any changes made in response to the final code-reviewer review have been reflected back into this plan file.
-- [ ] `pnpm test` — all tests pass.
-- [ ] `pnpm build` — succeeds.
+- [x] Code-reviewer agent reviews the entire change end-to-end.
+- [x] Any changes made in response to the final code-reviewer review have been reflected back into this plan file.
+- [x] `pnpm test` — all tests pass.
+- [x] `pnpm build` — succeeds.
 - [ ] JSON-LD validated via Google Rich Results Test (paste rendered HTML or URL).
 - [ ] OG/Twitter preview verified via social debugger (or meta tag inspection).
-- [ ] `/manifest.webmanifest` JSON validated.
-- [ ] Env-swap dry run completed and reverted.
+- [x] `/manifest.webmanifest` JSON validated.
+- [x] Env-swap dry run completed and reverted.
 - [ ] axe run on Hero + Contact — zero violations.
 - [ ] Lighthouse SEO check run.
-- [ ] `grep -r "web-express.com.ar" src/` returns only `src/content/site.ts`.
-- [ ] No CLAUDE.md invariants violated (no new deps, thin entry points, reuse helpers, minimal changes, pnpm).
+- [x] `grep -r "web-express.com.ar" src/` returns only `src/content/site.ts`.
+- [x] No CLAUDE.md invariants violated (no new deps, thin entry points, reuse helpers, minimal changes, pnpm).
 - [ ] Overall success criteria met.
 - [ ] All phase checkboxes above are ticked.
 
