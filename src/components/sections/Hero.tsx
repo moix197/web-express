@@ -48,7 +48,7 @@ export function Hero() {
           <Button
             asChild
             size="lg"
-            variant="outline"
+            variant="accent"
             className="h-11 min-w-[200px] px-6 text-base transition-colors duration-150 ease-out"
           >
             <a href="#servicios">Ver servicios</a>

@@ -1,5 +1,19 @@
 import { describe, expect, it } from "vitest"
-import { formatPriceARS } from "@/lib/format"
+import { formatPriceARS, formatPriceParts } from "@/lib/format"
+
+describe("formatPriceParts", () => {
+  it("returns currency AR$ and dot-grouped amount", () => {
+    const parts = formatPriceParts(199000)
+    expect(parts.currency).toBe("AR$")
+    expect(parts.amount).toBe("199.000")
+  })
+
+  it("returns unmodified amount for values below one thousand", () => {
+    const parts = formatPriceParts(999)
+    expect(parts.currency).toBe("AR$")
+    expect(parts.amount).toBe("999")
+  })
+})
 
 describe("formatPriceARS", () => {
   it("formats a typical price with dot thousands separator", () => {

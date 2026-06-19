@@ -1,6 +1,6 @@
 import { Check } from "lucide-react"
 import { services, type ServicePackage } from "@/content/services"
-import { formatPriceARS } from "@/lib/format"
+import { formatPriceARS, formatPriceParts } from "@/lib/format"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -57,15 +57,21 @@ function ServiceCard({ pkg }: { pkg: ServicePackage }) {
       </div>
 
       {/* Price */}
-      <p
-        className={cn(
-          "font-display text-3xl font-black leading-none tracking-tight",
-          isFeatured ? "text-accent" : "text-foreground"
-        )}
-        aria-label={`Precio: ${formatPriceARS(pkg.price)}`}
-      >
-        {formatPriceARS(pkg.price)}
-      </p>
+      {(() => {
+        const { currency, amount } = formatPriceParts(pkg.price)
+        return (
+          <p
+            className={cn(
+              "font-display font-black leading-none tracking-tight",
+              isFeatured ? "text-accent" : "text-foreground"
+            )}
+            aria-label={`Precio: ${formatPriceARS(pkg.price)}`}
+          >
+            <span className="mr-0.5 align-top text-base font-bold">{currency}</span>
+            <span className="text-3xl">{amount}</span>
+          </p>
+        )
+      })()}
 
       {/* Divider */}
       <hr className="border-border" />
@@ -82,7 +88,7 @@ function ServiceCard({ pkg }: { pkg: ServicePackage }) {
         <Button
           asChild
           size="lg"
-          variant={isFeatured ? "default" : "outline"}
+          variant={isFeatured ? "default" : "accent"}
           className="w-full cursor-pointer transition-colors duration-150"
         >
           <a href="#contacto" aria-label={`Contratar paquete ${pkg.name}`}>
@@ -117,8 +123,8 @@ function BrandingUpsell() {
       <Button
         asChild
         size="lg"
-        variant="outline"
-        className="shrink-0 cursor-pointer border-accent/50 transition-colors duration-150 hover:bg-accent/10"
+        variant="accent"
+        className="shrink-0 cursor-pointer transition-colors duration-150"
       >
         <a href="#contacto" aria-label="Consultar combo Branding + Sitio Web">
           Consultar combo
