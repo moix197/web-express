@@ -22,7 +22,15 @@ export function Footer() {
         <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-between">
           {/* Brand */}
           <div className="text-center sm:text-left">
-            <p className="font-display text-lg font-black tracking-tight text-foreground">
+            <p className="flex items-center justify-center gap-2.5 font-display text-lg font-black tracking-tight text-foreground sm:justify-start">
+              <img
+                src="/logo_gold.svg"
+                alt=""
+                aria-hidden="true"
+                width={32}
+                height={32}
+                className="size-8 shrink-0"
+              />
               {siteConfig.name}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">

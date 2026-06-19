@@ -43,8 +43,16 @@ export function Navbar() {
         {/* Brand */}
         <a
           href="#inicio"
-          className="font-display text-lg font-black uppercase tracking-tight text-foreground transition-colors duration-150 hover:text-accent"
+          className="flex items-center gap-2.5 font-display text-lg font-black uppercase tracking-tight text-foreground transition-colors duration-150 hover:text-accent"
         >
+          <img
+            src="/logo_gold.svg"
+            alt=""
+            aria-hidden="true"
+            width={32}
+            height={32}
+            className="size-8 shrink-0"
+          />
           {siteConfig.name}
         </a>
 

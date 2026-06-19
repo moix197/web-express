@@ -31,20 +31,22 @@ Explicit fields: `title`, `description`, and `images`. `title` is the combined `
 | File | Route | Purpose |
 |---|---|---|
 | `opengraph-image.tsx` | `/opengraph-image` | OG image (also referenced by `twitter.images`) |
-| `icon.tsx` | `/icon` | Favicon PNG (48×48) — WE monogram |
-| `apple-icon.tsx` | `/apple-icon` | Apple touch icon PNG (180×180) — WE monogram |
+| `icon.svg` | `/icon` | Favicon SVG — gold logo isologo |
+| `apple-icon.svg` | `/apple-icon` | Apple touch icon SVG — gold logo isologo |
 | `manifest.ts` | `/manifest.webmanifest` | Web app manifest |
 | `sitemap.ts` | `/sitemap.xml` | XML sitemap |
 | `robots.ts` | `/robots.txt` | Robots directives |
 
-## Icon set — WE monogram
+## Icon set — gold logo
 
-`icon.tsx` and `apple-icon.tsx` render the WE monogram using the same visual style as the brand badge in `opengraph-image.tsx`: solid `#0ea5e9` rounded-square background, white bold sans-serif "WE" text, edge runtime (no Node-only APIs). Each exports `size` and `contentType` per the Next.js file convention.
+`icon.svg` and `apple-icon.svg` serve the official `logo_gold.svg` isologo as the site icon via Next.js file conventions. The WE monogram (`icon.tsx` / `apple-icon.tsx`) has been removed.
 
-- `icon.tsx` — 48×48 px, `borderRadius: "11px"`, `fontSize: "18px"`
-- `apple-icon.tsx` — 180×180 px, `borderRadius: "40px"`, `fontSize: "68px"`
+| File | Route | Format |
+|---|---|---|
+| `icon.svg` | `/icon` | SVG — served directly by Next.js |
+| `apple-icon.svg` | `/apple-icon` | SVG — Apple touch icon fallback |
 
-`favicon.ico` remains in the public tree and coexists with `icon.tsx`; browsers that support PNG icons prefer `icon.tsx` while legacy browsers fall back to `favicon.ico`.
+`favicon.ico` remains in `public/` and coexists with `icon.svg`; legacy browsers fall back to `favicon.ico`. `theme_color` (`#c9ae7b`) already matches the logo gradient midpoint — no change needed in `manifest.ts`.
 
 ## Web manifest (`manifest.ts`)
 
