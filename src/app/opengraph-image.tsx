@@ -23,7 +23,8 @@ const ICON_SVG = `<svg width="600" height="600" viewBox="255 147 600 600" xmlns=
   <path fill="url(#portalGold)" fill-rule="evenodd" d="M 298 292 C 298 232, 346 184, 406 184 L 704 184 C 764 184, 812 232, 812 292 L 812 710 L 700 660 L 700 446 C 700 410, 676 379, 642 369 L 443 309 C 418 301, 392 320, 392 347 L 392 660 L 298 710 Z M 444 374 L 617 426 C 646 435, 666 462, 666 493 L 666 642 L 444 642 Z"/>
 </svg>`
 
-const ICON_B64 = Buffer.from(ICON_SVG).toString("base64")
+// btoa is part of the Edge runtime's Web APIs; Buffer is NOT available there.
+const ICON_B64 = btoa(ICON_SVG)
 
 export default async function OgImage() {
   return new ImageResponse(
