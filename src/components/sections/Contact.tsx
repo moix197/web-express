@@ -107,7 +107,7 @@ export function Contact() {
               <Button
                 asChild
                 size="lg"
-                variant="secondary"
+                variant="outline"
                 className="h-11 flex-1 px-6 text-base transition-colors duration-150 ease-out"
               >
                 <a href={mailHref}>
