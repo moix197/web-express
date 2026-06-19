@@ -51,7 +51,7 @@ export function Navbar() {
             aria-hidden="true"
             width={32}
             height={32}
-            className="size-8 shrink-0"
+            className="size-9 shrink-0"
           />
           {siteConfig.name}
         </a>

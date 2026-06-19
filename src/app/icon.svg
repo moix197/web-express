@@ -1,47 +1,10 @@
-<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Web Express Portal Isologo">
+<svg width="600" height="600" viewBox="255 147 600 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Web Express">
   <defs>
-    <!-- Web Express institutional gold gradient -->
     <linearGradient id="portalGold" x1="292" y1="184" x2="812" y2="724" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#E6CC91"/>
       <stop offset="45%" stop-color="#C9AE7B"/>
       <stop offset="100%" stop-color="#A98545"/>
     </linearGradient>
-
-    <radialGradient id="portalGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#C9AE7B" stop-opacity="0.38"/>
-      <stop offset="55%" stop-color="#C9AE7B" stop-opacity="0.14"/>
-      <stop offset="100%" stop-color="#C9AE7B" stop-opacity="0"/>
-    </radialGradient>
-
-    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#1D1D1D" flood-opacity="0.13"/>
-    </filter>
   </defs>
-
-  <!-- Optional soft base glow -->
-  <ellipse cx="512" cy="730" rx="188" ry="48" fill="url(#portalGlow)"/>
-
-  <!-- Web Express portal isotype -->
-  <path filter="url(#softShadow)" fill="url(#portalGold)" fill-rule="evenodd" d="
-    M 298 292
-    C 298 232, 346 184, 406 184
-    L 704 184
-    C 764 184, 812 232, 812 292
-    L 812 710
-    L 700 660
-    L 700 446
-    C 700 410, 676 379, 642 369
-    L 443 309
-    C 418 301, 392 320, 392 347
-    L 392 660
-    L 298 710
-    Z
-
-    M 444 374
-    L 617 426
-    C 646 435, 666 462, 666 493
-    L 666 642
-    L 444 642
-    Z
-  "/>
+  <path fill="url(#portalGold)" fill-rule="evenodd" d="M 298 292 C 298 232, 346 184, 406 184 L 704 184 C 764 184, 812 232, 812 292 L 812 710 L 700 660 L 700 446 C 700 410, 676 379, 642 369 L 443 309 C 418 301, 392 320, 392 347 L 392 660 L 298 710 Z M 444 374 L 617 426 C 646 435, 666 462, 666 493 L 666 642 L 444 642 Z"/>
 </svg>
