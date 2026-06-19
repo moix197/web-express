@@ -33,10 +33,15 @@ export interface SiteConfig {
   }
 }
 
+// `??` only falls back on null/undefined — a present-but-empty env var (e.g. a
+// blank value configured in the host) would slip through and make `new URL("")`
+// throw at build. `|| trim()` falls back on empty/whitespace values too.
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://web-express.com.ar"
+
 export const siteConfig: SiteConfig = {
   name: "web-express",
   tagline: "Sitios web profesionales para tu negocio",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://web-express.com.ar"),
+  metadataBase: new URL(SITE_URL),
   get domain() {
     return this.metadataBase.host
   },
