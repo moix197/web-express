@@ -61,16 +61,16 @@ Create a git worktree for isolated development.
 
 **Steps:**
 
-- [ ] Read `src/content/site.ts` to confirm current `metadataBase` shape.
-- [ ] Modify `src/content/site.ts`: change `metadataBase` to `new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://web-express.com.ar")` and add a `domain` getter returning `this.metadataBase.host`.
-- [ ] Read `src/components/sections/Footer.tsx` line 60, replace the hardcoded string with `siteConfig.domain`.
-- [ ] Read `src/app/opengraph-image.tsx` line 90, replace the hardcoded string with `siteConfig.domain`.
-- [ ] Create `.env.example` at project root documenting `NEXT_PUBLIC_SITE_URL`.
-- [ ] Run `pnpm test` — all 4 tests must pass.
-- [ ] Run `pnpm build` — must succeed.
-- [ ] Run `grep -r "web-express.com.ar" src/components/ src/app/` — must return zero results (the only remaining occurrence is the fallback in `src/content/site.ts`).
-- [ ] Update `src/content/README.md` (or the nearest relevant README) to document the `NEXT_PUBLIC_SITE_URL` env var and the `domain` getter.
-- [ ] Update project root `README.md` env vars / setup section with `.env.example` reference.
+- [x] Read `src/content/site.ts` to confirm current `metadataBase` shape.
+- [x] Modify `src/content/site.ts`: change `metadataBase` to `new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://web-express.com.ar")` and add a `domain` getter returning `this.metadataBase.host`.
+- [x] Read `src/components/sections/Footer.tsx` line 60, replace the hardcoded string with `siteConfig.domain`.
+- [x] Read `src/app/opengraph-image.tsx` line 90, replace the hardcoded string with `siteConfig.domain`.
+- [x] Create `.env.example` at project root documenting `NEXT_PUBLIC_SITE_URL`.
+- [x] Run `pnpm test` — all 4 tests must pass.
+- [x] Run `pnpm build` — must succeed.
+- [x] Run `grep -r "web-express.com.ar" src/components/ src/app/` — must return zero results (the only remaining occurrence is the fallback in `src/content/site.ts`).
+- [x] Update `src/content/README.md` (or the nearest relevant README) to document the `NEXT_PUBLIC_SITE_URL` env var and the `domain` getter.
+- [x] Update project root `README.md` env vars / setup section with `.env.example` reference.
 
 **Tests:**
 
@@ -81,23 +81,23 @@ Create a git worktree for isolated development.
 
 **Verification:**
 
-- [ ] `pnpm test` passes (all 4 existing + new `src/content/__tests__/site.test.ts`).
-- [ ] `pnpm build` passes.
-- [ ] `grep -r "web-express.com.ar" src/components/ src/app/` returns zero results.
-- [ ] `grep -r "web-express.com.ar" src/content/site.ts` returns exactly one result (the fallback string).
-- [ ] `siteConfig.metadataBase` is confirmed as a `URL` instance (asserted in site.test.ts).
+- [x] `pnpm test` passes (all 4 existing + new `src/content/__tests__/site.test.ts`).
+- [x] `pnpm build` passes.
+- [x] `grep -r "web-express.com.ar" src/components/ src/app/` returns zero results.
+- [x] `grep -r "web-express.com.ar" src/content/site.ts` returns exactly one result (the fallback string).
+- [x] `siteConfig.metadataBase` is confirmed as a `URL` instance (asserted in site.test.ts).
 
 **Phase review:**
 
-- [ ] All Steps and Verification checkboxes above ticked in the plan file
-- [ ] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
-- [ ] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
-- [ ] Code-reviewer agent has verified this phase
-- [ ] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
-- [ ] Tests for this phase written and passing
-- [ ] Documentation updated
+- [x] All Steps and Verification checkboxes above ticked in the plan file
+- [x] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
+- [x] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
+- [x] Code-reviewer agent has verified this phase
+- [x] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
+- [x] Tests for this phase written and passing
+- [x] Documentation updated
 - [ ] Orchestrator (user) has verified and approved this phase
-- [ ] Changes committed: `feat(seo): single source of truth for base URL, env-overridable via NEXT_PUBLIC_SITE_URL`
+- [x] Changes committed: `feat(seo): single source of truth for base URL, env-overridable via NEXT_PUBLIC_SITE_URL`
 - [ ] Phase marked complete
 
 ---
