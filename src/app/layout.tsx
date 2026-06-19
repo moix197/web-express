@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { DM_Sans, Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 import { siteConfig } from "@/content/site"
 import { services } from "@/content/services"
 import { buildLocalBusinessSchema, buildServiceSchema } from "@/lib/schema"
@@ -82,6 +84,8 @@ export default function RootLayout({
           {children}
           <WhatsAppFloatingButton />
         </ThemeProvider>
+        <SpeedInsights />
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
