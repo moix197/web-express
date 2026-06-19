@@ -18,14 +18,17 @@ const dmSans = DM_Sans({
   subsets: ["latin"],
 })
 
+const title = `${siteConfig.name} — ${siteConfig.tagline}`
+const description =
+  "Creamos sitios web profesionales, rápidos y optimizados para que tu negocio crezca en internet. Diseño web, tiendas online y branding en Argentina."
+
 export const metadata: Metadata = {
   metadataBase: siteConfig.metadataBase,
   title: {
     template: `%s | ${siteConfig.name}`,
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: title,
   },
-  description:
-    "Creamos sitios web profesionales, rápidos y optimizados para que tu negocio crezca en internet. Diseño web, tiendas online y branding en Argentina.",
+  description,
   robots: {
     index: true,
     follow: true,
@@ -38,17 +41,15 @@ export const metadata: Metadata = {
     type: "website",
     siteName: siteConfig.name,
     locale: "es_AR",
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
-    description:
-      "Creamos sitios web profesionales, rápidos y optimizados para que tu negocio crezca en internet. Diseño web, tiendas online y branding en Argentina.",
+    title,
+    description,
     url: siteConfig.metadataBase.toString(),
     images: [{ url: "/opengraph-image" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
-    description:
-      "Creamos sitios web profesionales, rápidos y optimizados para que tu negocio crezca en internet. Diseño web, tiendas online y branding en Argentina.",
+    title,
+    description,
     images: [{ url: "/opengraph-image" }],
   },
   alternates: {

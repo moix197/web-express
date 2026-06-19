@@ -22,7 +22,7 @@ Explicit fields: `title`, `description`, `url` (from `siteConfig.metadataBase.to
 
 ### twitter
 
-Explicit fields: `title`, `description`, and `images`. The `images` array references `/opengraph-image` (the Next.js ImageResponse route defined in `src/app/opengraph-image.tsx`).
+Explicit fields: `title`, `description`, and `images`. `title` is the combined `"${siteConfig.name} — ${siteConfig.tagline}"` string (same as the root default title); `description` is the full marketing sentence shared with `openGraph`. Both are derived from local `title`/`description` consts hoisted above the `metadata` export. The `images` array references `/opengraph-image` (the Next.js ImageResponse route defined in `src/app/opengraph-image.tsx`).
 
 **Decision — no separate `twitter-image.tsx`:** Twitter crawlers accept `twitter:image` pointing to the OG image route. Creating a separate `twitter-image.tsx` would duplicate the ImageResponse logic with no functional benefit. `twitter.images` points to `/opengraph-image` and that is sufficient.
 
