@@ -67,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="es"
+      lang="es-AR"
       suppressHydrationWarning
       className={`${inter.variable} ${dmSans.variable} h-full antialiased`}
     >

@@ -38,7 +38,7 @@ export function Contact() {
         </div>
 
         {/* Form card */}
-        <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+        <form onSubmit={(e) => e.preventDefault()} className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
           <div className="space-y-5">
             {/* Name input */}
             <div className="flex flex-col gap-1.5">
@@ -116,7 +116,7 @@ export function Contact() {
               </Button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   )
