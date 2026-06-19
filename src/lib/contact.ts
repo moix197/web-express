@@ -1,7 +1,7 @@
 import { type SiteConfig } from "@/content/site"
 
 const DEFAULT_WA_MESSAGE = "Hola, me gustaría saber más sobre sus servicios web."
-const DEFAULT_EMAIL_SUBJECT = "Consulta desde web-express.com.ar"
+const DEFAULT_EMAIL_SUBJECT = (domain: string) => `Consulta desde ${domain}`
 const DEFAULT_EMAIL_BODY = "Hola, me gustaría saber más sobre sus servicios web."
 
 /** Pre-filled WhatsApp message for the "Reservá una llamada" CTAs (Hero + floating button). */
@@ -48,7 +48,7 @@ export function buildMailtoUrl(
 
   const subject = trimmedName
     ? `Consulta de ${trimmedName}`
-    : DEFAULT_EMAIL_SUBJECT
+    : DEFAULT_EMAIL_SUBJECT(config.domain)
 
   const body =
     trimmedName || trimmedMessage

@@ -6,6 +6,7 @@ const mockConfig: SiteConfig = {
   name: "web-express",
   tagline: "Test tagline",
   metadataBase: new URL("https://web-express.com.ar"),
+  domain: "web-express.com.ar",
   email: "hola@web-express.com.ar",
   whatsApp: "5491100000000",
   social: { instagram: "#", linkedin: "#", github: "#" },
