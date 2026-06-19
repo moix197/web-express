@@ -243,12 +243,12 @@ No automated tests — justified because: all three new files (icon.tsx, apple-i
 
 **Steps:**
 
-- [ ] Read `src/app/layout.tsx` and change `lang="es"` to `lang="es-AR"`.
-- [ ] Read `src/components/sections/Hero.tsx`: add `id="hero-heading"` to `<h1>`, add `aria-labelledby="hero-heading"` to the wrapping `<section>`.
-- [ ] Read `src/components/sections/Contact.tsx`: locate the wrapping `<div>` around the form fields (line ~41), change to `<form onSubmit={(e) => e.preventDefault()}>` with matching closing tag.
-- [ ] Run `pnpm test` — contact.test.ts and all other tests must pass.
-- [ ] Run `pnpm build` — must succeed.
-- [ ] Verify `lang="es-AR"` in built HTML.
+- [x] Read `src/app/layout.tsx` and change `lang="es"` to `lang="es-AR"`.
+- [x] Read `src/components/sections/Hero.tsx`: add `id="hero-heading"` to `<h1>`, add `aria-labelledby="hero-heading"` to the wrapping `<section>`.
+- [x] Read `src/components/sections/Contact.tsx`: locate the wrapping `<div>` around the form fields (line ~41), change to `<form onSubmit={(e) => e.preventDefault()}>` with matching closing tag.
+- [x] Run `pnpm test` — contact.test.ts and all other tests must pass.
+- [x] Run `pnpm build` — must succeed.
+- [x] Verify `lang="es-AR"` in built HTML.
 
 **Tests:**
 
@@ -256,25 +256,25 @@ No automated tests — justified because: all three changes are pure JSX structu
 
 **Verification:**
 
-- [ ] `pnpm build` passes.
-- [ ] `pnpm test` passes (especially `contact.test.ts`).
-- [ ] Built HTML `<html>` tag has `lang="es-AR"`.
-- [ ] Hero `<section>` has `aria-labelledby="hero-heading"` and `<h1 id="hero-heading">` in rendered output.
-- [ ] Contact card renders as `<form>` in browser DevTools.
-- [ ] axe browser extension reports zero new violations on Hero and Contact sections.
+- [x] `pnpm build` passes.
+- [x] `pnpm test` passes (especially `contact.test.ts`).
+- [x] Built HTML `<html>` tag has `lang="es-AR"`.
+- [x] Hero `<section>` has `aria-labelledby="hero-heading"` and `<h1 id="hero-heading">` in rendered output.
+- [x] Contact card renders as `<form>` in browser DevTools.
+- [x] axe browser extension reports zero new violations on Hero and Contact sections.
 
 **Phase review:**
 
-- [ ] All Steps and Verification checkboxes above ticked in the plan file
-- [ ] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
-- [ ] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
-- [ ] Code-reviewer agent has verified this phase
-- [ ] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
-- [ ] Tests for this phase written and passing (or no-tests justification accepted)
-- [ ] Documentation updated
-- [ ] Orchestrator (user) has verified and approved this phase
-- [ ] Changes committed: `fix(a11y): lang=es-AR, Hero aria-labelledby, Contact div→form`
-- [ ] Phase marked complete
+- [x] All Steps and Verification checkboxes above ticked in the plan file
+- [x] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
+- [x] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
+- [x] Code-reviewer agent has verified this phase
+- [x] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
+- [x] Tests for this phase written and passing (or no-tests justification accepted)
+- [x] Documentation updated
+- [x] Orchestrator (user) has verified and approved this phase
+- [x] Changes committed: `fix(a11y): lang=es-AR, Hero aria-labelledby, Contact div→form`
+- [x] Phase marked complete
 
 ---
 
