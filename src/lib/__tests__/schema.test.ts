@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { buildLocalBusinessSchema, buildServiceSchema } from "@/lib/schema"
+import { siteConfig } from "@/content/site"
 import type { ServicePackage } from "@/content/services"
 
 const sampleService: ServicePackage = {
@@ -19,6 +20,14 @@ describe("buildLocalBusinessSchema", () => {
 
   it("quotes prices in ARS", () => {
     expect(buildLocalBusinessSchema().currenciesAccepted).toBe("ARS")
+  })
+
+  // JSON-LD url fields are coupled to siteConfig.metadataBase — changing
+  // NEXT_PUBLIC_SITE_URL (or the fallback in site.ts) propagates here
+  // automatically via siteConfig.metadataBase.toString().
+  it("url starts with siteConfig.metadataBase.toString()", () => {
+    const schema = buildLocalBusinessSchema()
+    expect(schema.url).toMatch(new RegExp(`^${siteConfig.metadataBase.toString()}`))
   })
 })
 

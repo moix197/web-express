@@ -87,7 +87,7 @@ export default async function OgImage() {
           }}
         >
           <span style={{ color: "#7dd3fc", fontSize: "20px", fontWeight: 500 }}>
-            web-express.com.ar
+            {siteConfig.domain}
           </span>
         </div>
       </div>

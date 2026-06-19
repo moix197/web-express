@@ -57,7 +57,7 @@ export function Footer() {
         {/* Bottom row: copyright + social icons */}
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
           <p className="text-sm text-muted-foreground">
-            &copy; {year} web-express.com.ar. Todos los derechos reservados.
+            &copy; {year} {siteConfig.domain}. Todos los derechos reservados.
           </p>
 
           {/* Social icons */}

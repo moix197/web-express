@@ -4,8 +4,19 @@ export interface SiteConfig {
   name: string
   /** Short tagline shown in metadata and hero. */
   tagline: string
-  /** Canonical production origin used as the metadata base URL. */
+  /**
+   * Canonical production origin used as the metadata base URL.
+   * Controlled by the `NEXT_PUBLIC_SITE_URL` env var; falls back to
+   * `https://web-express.com.ar` when the var is unset.
+   */
   metadataBase: URL
+  /**
+   * Shorthand for `metadataBase.host` — the bare hostname without protocol or
+   * trailing slash (e.g. `"web-express.com.ar"`). Use this wherever only the
+   * domain name is needed (footer copyright, OG badge) so consumers never
+   * duplicate `.host` logic.
+   */
+  readonly domain: string
   /** Contact email address. */
   email: string
   /**
@@ -25,7 +36,10 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: "web-express",
   tagline: "Sitios web profesionales para tu negocio",
-  metadataBase: new URL("https://web-express.com.ar"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://web-express.com.ar"),
+  get domain() {
+    return this.metadataBase.host
+  },
   email: "hola@web-express.com.ar",
   whatsApp: "5491100000000",
   social: {

@@ -14,6 +14,17 @@ Argentine Spanish (voseo). All conversions funnel to WhatsApp or email.
 - **Vitest** for unit tests
 - **pnpm** as the package manager (npm/yarn not used)
 
+## Setup
+
+Copy the example env file and adjust as needed:
+
+```bash
+cp .env.example .env.local
+```
+
+`.env.example` documents all supported environment variables. For a staging
+deployment, set `NEXT_PUBLIC_SITE_URL` to the staging origin before building.
+
 ## Commands
 
 ```bash
@@ -23,6 +34,14 @@ pnpm start    # serve the production build
 pnpm test     # run Vitest unit tests
 pnpm lint     # run ESLint
 ```
+
+## Environment variables
+
+| Variable | Default | Effect |
+|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | `https://web-express.com.ar` | Controls the canonical base URL. Propagates to `<link rel="canonical">`, sitemap, robots.txt, JSON-LD `url` fields, footer copyright domain, and OG image domain badge. |
+
+See `.env.example` for the full list with comments.
 
 ## Design tokens
 
