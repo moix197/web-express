@@ -96,9 +96,9 @@ Create a git worktree for isolated development.
 - [x] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
 - [x] Tests for this phase written and passing
 - [x] Documentation updated
-- [ ] Orchestrator (user) has verified and approved this phase
+- [x] Orchestrator (user) has verified and approved this phase
 - [x] Changes committed: `feat(seo): single source of truth for base URL, env-overridable via NEXT_PUBLIC_SITE_URL`
-- [ ] Phase marked complete
+- [x] Phase marked complete
 
 ---
 
@@ -120,14 +120,14 @@ Create a git worktree for isolated development.
 
 **Steps:**
 
-- [ ] Read `src/app/layout.tsx` metadata export to confirm current shape.
-- [ ] Add `robots` directive block.
-- [ ] Extend `twitter` with `title` (use `siteConfig.name`), `description` (use `siteConfig.tagline`), `images: [{ url: "/opengraph-image" }]`. Decision: use `/opengraph-image` as the twitter image reference — no separate `twitter-image.tsx` file will be created (see Phase 3). This avoids duplication since Twitter crawlers accept the `twitter:image` meta tag pointing to the OG image route.
-- [ ] Make `openGraph.title`, `openGraph.description`, `openGraph.url`, `openGraph.images` explicit (currently implicit or missing). Pull values from `siteConfig`.
-- [ ] Run `pnpm build` — must succeed.
-- [ ] Run `pnpm test` — all tests must pass.
-- [ ] Inspect built output (`.next/server/app/page.html` or equivalent) to confirm tags are present.
-- [ ] Update `src/app/README.md` to document the robots/twitter/OG additions and the twitter-image decision (Phase 2 step per Documentation table).
+- [x] Read `src/app/layout.tsx` metadata export to confirm current shape.
+- [x] Add `robots` directive block.
+- [x] Extend `twitter` with `title` (use `siteConfig.name`), `description` (use `siteConfig.tagline`), `images: [{ url: "/opengraph-image" }]`. Decision: use `/opengraph-image` as the twitter image reference — no separate `twitter-image.tsx` file will be created (see Phase 3). This avoids duplication since Twitter crawlers accept the `twitter:image` meta tag pointing to the OG image route.
+- [x] Make `openGraph.title`, `openGraph.description`, `openGraph.url`, `openGraph.images` explicit (currently implicit or missing). Pull values from `siteConfig`.
+- [x] Run `pnpm build` — must succeed.
+- [x] Run `pnpm test` — all tests must pass.
+- [x] Inspect built output (`.next/server/app/page.html` or equivalent) to confirm tags are present.
+- [x] Update `src/app/README.md` to document the robots/twitter/OG additions and the twitter-image decision (Phase 2 step per Documentation table).
 
 **Tests:**
 
@@ -135,22 +135,22 @@ No automated tests — justified because: this phase is pure metadata configurat
 
 **Verification:**
 
-- [ ] `pnpm build` passes.
-- [ ] `pnpm test` passes.
-- [ ] Built HTML contains `robots`, `twitter:title`, `twitter:description`, `twitter:image`, and explicit OG fields (inspect `.next/server/app/page.html` or run `pnpm start` and `curl localhost:3000 | grep -i "og:\|twitter:\|robots"`).
+- [x] `pnpm build` passes.
+- [x] `pnpm test` passes.
+- [x] Built HTML contains `robots`, `twitter:title`, `twitter:description`, `twitter:image`, and explicit OG fields (inspect `.next/server/app/page.html` or run `pnpm start` and `curl localhost:3000 | grep -i "og:\|twitter:\|robots"`).
 
 **Phase review:**
 
-- [ ] All Steps and Verification checkboxes above ticked in the plan file
-- [ ] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
-- [ ] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
-- [ ] Code-reviewer agent has verified this phase
-- [ ] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
-- [ ] Tests for this phase written and passing (or no-tests justification accepted)
-- [ ] Documentation updated
-- [ ] Orchestrator (user) has verified and approved this phase
-- [ ] Changes committed: `feat(seo): complete robots directives and twitter/OG metadata in layout`
-- [ ] Phase marked complete
+- [x] All Steps and Verification checkboxes above ticked in the plan file
+- [x] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
+- [x] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
+- [x] Code-reviewer agent has verified this phase
+- [x] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
+- [x] Tests for this phase written and passing (or no-tests justification accepted)
+- [x] Documentation updated
+- [x] Orchestrator (user) has verified and approved this phase
+- [x] Changes committed: `feat(seo): complete robots directives and twitter/OG metadata in layout`
+- [x] Phase marked complete
 
 ---
 
