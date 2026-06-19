@@ -26,13 +26,30 @@ export const metadata: Metadata = {
   },
   description:
     "Creamos sitios web profesionales, rápidos y optimizados para que tu negocio crezca en internet. Diseño web, tiendas online y branding en Argentina.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
   openGraph: {
     type: "website",
     siteName: siteConfig.name,
     locale: "es_AR",
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    description:
+      "Creamos sitios web profesionales, rápidos y optimizados para que tu negocio crezca en internet. Diseño web, tiendas online y branding en Argentina.",
+    url: siteConfig.metadataBase.toString(),
+    images: [{ url: "/opengraph-image" }],
   },
   twitter: {
     card: "summary_large_image",
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    description:
+      "Creamos sitios web profesionales, rápidos y optimizados para que tu negocio crezca en internet. Diseño web, tiendas online y branding en Argentina.",
+    images: [{ url: "/opengraph-image" }],
   },
   alternates: {
     canonical: siteConfig.metadataBase.toString(),
