@@ -177,20 +177,20 @@ No automated tests — justified because: this phase is pure metadata configurat
 
 **Steps:**
 
-- [ ] **[hil — orchestrator]** Invoke `ui-ux-pro-max --stack nextjs` to design the WE monogram mark, requesting it match the existing OG image visual style (gradient + rounded square + text). Approve the design before proceeding.
-- [ ] Confirm `theme_color` hex from `tailwind.config.ts` (accent token) and `background_color` hex from `globals.css`/Tailwind config. Update manifest.ts file-changes table above if they differ from the values listed.
-- [ ] Read `src/app/opengraph-image.tsx` to understand the existing ImageResponse pattern; replicate the same approach in icon files (no Node-only APIs — edge runtime only).
-- [ ] Create `src/app/icon.tsx` using Next.js ImageResponse. Export `size = { width: 48, height: 48 }` and `contentType = "image/png"`. Render WE monogram using the approved design. Do NOT use any Node.js-only APIs (no `fs`, `path`, `Buffer` with Node polyfill, etc.).
-- [ ] Create `src/app/apple-icon.tsx` at 180x180. Same monogram, same constraints.
-- [ ] Create `src/app/manifest.ts` returning the web manifest object with confirmed color values.
-- [ ] Modify `src/app/opengraph-image.tsx` — change "W" to "WE" in the badge text.
-- [ ] **twitter-image decision (resolved in Phase 2):** Phase 2 sets `twitter.images: [{ url: "/opengraph-image" }]` in layout metadata. No separate `twitter-image.tsx` is needed. Do not create one.
-- [ ] Confirm existing `favicon.ico` is NOT deleted — it coexists with `icon.tsx`. Next.js serves both.
-- [ ] Run `pnpm build` — must succeed.
-- [ ] Run `pnpm test` — all tests must pass.
-- [ ] Start dev server (`pnpm dev`) and verify `/manifest.webmanifest`, `/icon`, `/apple-icon` return 200.
-- [ ] Verify browser tab favicon shows WE mark.
-- [ ] Update `src/app/README.md` to document the icon/manifest file-convention files, their visual relationship, and the favicon.ico coexistence note.
+- [x] **[hil — orchestrator]** Invoke `ui-ux-pro-max --stack nextjs` to design the WE monogram mark, requesting it match the existing OG image visual style (gradient + rounded square + text). Approve the design before proceeding.
+- [x] Confirm `theme_color` hex from `tailwind.config.ts` (accent token) and `background_color` hex from `globals.css`/Tailwind config. Update manifest.ts file-changes table above if they differ from the values listed.
+- [x] Read `src/app/opengraph-image.tsx` to understand the existing ImageResponse pattern; replicate the same approach in icon files (no Node-only APIs — edge runtime only).
+- [x] Create `src/app/icon.tsx` using Next.js ImageResponse. Export `size = { width: 48, height: 48 }` and `contentType = "image/png"`. Render WE monogram using the approved design. Do NOT use any Node.js-only APIs (no `fs`, `path`, `Buffer` with Node polyfill, etc.).
+- [x] Create `src/app/apple-icon.tsx` at 180x180. Same monogram, same constraints.
+- [x] Create `src/app/manifest.ts` returning the web manifest object with confirmed color values.
+- [x] Modify `src/app/opengraph-image.tsx` — change "W" to "WE" in the badge text.
+- [x] **twitter-image decision (resolved in Phase 2):** Phase 2 sets `twitter.images: [{ url: "/opengraph-image" }]` in layout metadata. No separate `twitter-image.tsx` is needed. Do not create one.
+- [x] Confirm existing `favicon.ico` is NOT deleted — it coexists with `icon.tsx`. Next.js serves both.
+- [x] Run `pnpm build` — must succeed.
+- [x] Run `pnpm test` — all tests must pass.
+- [x] Start dev server (`pnpm dev`) and verify `/manifest.webmanifest`, `/icon`, `/apple-icon` return 200.
+- [x] Verify browser tab favicon shows WE mark.
+- [x] Update `src/app/README.md` to document the icon/manifest file-convention files, their visual relationship, and the favicon.ico coexistence note.
 
 **Tests:**
 
@@ -198,28 +198,28 @@ No automated tests — justified because: all three new files (icon.tsx, apple-i
 
 **Verification:**
 
-- [ ] `pnpm build` passes.
-- [ ] `pnpm test` passes.
-- [ ] `GET /manifest.webmanifest` returns JSON with correct `name`, `theme_color` (`#c9ae7b` or confirmed value), `icons`.
-- [ ] `GET /icon` returns a PNG image (200 status).
-- [ ] `GET /apple-icon` returns a PNG image (200 status).
-- [ ] `GET /favicon.ico` still returns 200 (existing file not deleted).
-- [ ] OG image badge shows "WE" (verify at `/opengraph-image`).
-- [ ] Browser tab favicon shows WE mark.
-- [ ] No Node-only APIs in icon.tsx or apple-icon.tsx (confirm by `grep -n "require('fs')\|require('path')\|readFileSync" src/app/icon.tsx src/app/apple-icon.tsx` returns no results).
+- [x] `pnpm build` passes.
+- [x] `pnpm test` passes.
+- [x] `GET /manifest.webmanifest` returns JSON with correct `name`, `theme_color` (`#c9ae7b` or confirmed value), `icons`.
+- [x] `GET /icon` returns a PNG image (200 status).
+- [x] `GET /apple-icon` returns a PNG image (200 status).
+- [x] `GET /favicon.ico` still returns 200 (existing file not deleted).
+- [x] OG image badge shows "WE" (verify at `/opengraph-image`).
+- [x] Browser tab favicon shows WE mark.
+- [x] No Node-only APIs in icon.tsx or apple-icon.tsx (confirm by `grep -n "require('fs')\|require('path')\|readFileSync" src/app/icon.tsx src/app/apple-icon.tsx` returns no results).
 
 **Phase review:**
 
-- [ ] All Steps and Verification checkboxes above ticked in the plan file
-- [ ] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
-- [ ] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
-- [ ] Code-reviewer agent has verified this phase
-- [ ] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
-- [ ] Tests for this phase written and passing (or no-tests justification accepted)
-- [ ] Documentation updated
-- [ ] Orchestrator (user) has verified and approved this phase
-- [ ] Changes committed: `feat(seo): add WE monogram icon set (icon.tsx, apple-icon.tsx) and web manifest`
-- [ ] Phase marked complete
+- [x] All Steps and Verification checkboxes above ticked in the plan file
+- [x] Reviewer handoff prompt emitted in a fenced code block as the final message of this turn
+- [x] Orchestrator cleared context (`/clear`) and pasted the handoff prompt into a fresh session
+- [x] Code-reviewer agent has verified this phase
+- [x] Any changes made in response to code-reviewer suggestions have been reflected back into this plan file
+- [x] Tests for this phase written and passing (or no-tests justification accepted)
+- [x] Documentation updated
+- [x] Orchestrator (user) has verified and approved this phase
+- [x] Changes committed: `feat(seo): add WE monogram icon set (icon.tsx, apple-icon.tsx) and web manifest`
+- [x] Phase marked complete
 
 ---
 
