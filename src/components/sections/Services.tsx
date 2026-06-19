@@ -67,7 +67,7 @@ function ServiceCard({ pkg }: { pkg: ServicePackage }) {
             )}
             aria-label={`Precio: ${formatPriceARS(pkg.price)}`}
           >
-            <span className="mr-0.5 align-top text-base font-bold">{currency}</span>
+            <span className="mr-0.5 align-bottom text-base font-bold">{currency}</span>
             <span className="text-3xl">{amount}</span>
           </p>
         )
@@ -88,7 +88,7 @@ function ServiceCard({ pkg }: { pkg: ServicePackage }) {
         <Button
           asChild
           size="lg"
-          variant={isFeatured ? "default" : "accent"}
+          variant={isFeatured ? "accent" : "outline"}
           className="w-full cursor-pointer transition-colors duration-150"
         >
           <a href="#contacto" aria-label={`Contratar paquete ${pkg.name}`}>
@@ -123,8 +123,8 @@ function BrandingUpsell() {
       <Button
         asChild
         size="lg"
-        variant="accent"
-        className="shrink-0 cursor-pointer transition-colors duration-150"
+        variant="outline"
+        className="shrink-0 cursor-pointer border-accent/50 transition-colors duration-150 hover:bg-accent/10"
       >
         <a href="#contacto" aria-label="Consultar combo Branding + Sitio Web">
           Consultar combo
