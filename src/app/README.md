@@ -31,5 +31,28 @@ Explicit fields: `title`, `description`, and `images`. `title` is the combined `
 | File | Route | Purpose |
 |---|---|---|
 | `opengraph-image.tsx` | `/opengraph-image` | OG image (also referenced by `twitter.images`) |
+| `icon.tsx` | `/icon` | Favicon PNG (48×48) — WE monogram |
+| `apple-icon.tsx` | `/apple-icon` | Apple touch icon PNG (180×180) — WE monogram |
+| `manifest.ts` | `/manifest.webmanifest` | Web app manifest |
 | `sitemap.ts` | `/sitemap.xml` | XML sitemap |
 | `robots.ts` | `/robots.txt` | Robots directives |
+
+## Icon set — WE monogram
+
+`icon.tsx` and `apple-icon.tsx` render the WE monogram using the same visual style as the brand badge in `opengraph-image.tsx`: solid `#0ea5e9` rounded-square background, white bold sans-serif "WE" text, edge runtime (no Node-only APIs). Each exports `size` and `contentType` per the Next.js file convention.
+
+- `icon.tsx` — 48×48 px, `borderRadius: "11px"`, `fontSize: "18px"`
+- `apple-icon.tsx` — 180×180 px, `borderRadius: "40px"`, `fontSize: "68px"`
+
+`favicon.ico` remains in the public tree and coexists with `icon.tsx`; browsers that support PNG icons prefer `icon.tsx` while legacy browsers fall back to `favicon.ico`.
+
+## Web manifest (`manifest.ts`)
+
+Confirmed color values read from `src/app/globals.css`:
+
+| Token | Hex | Source |
+|---|---|---|
+| `theme_color` | `#c9ae7b` | `--accent` (gold brand token) |
+| `background_color` | `#f7f4ef` | `--background` (light mode page background) |
+
+`display: "browser"` is used (not `"standalone"`) because this is a marketing site, not an installable PWA. The `icons` array references `/icon` (48×48) and `/apple-icon` (180×180); no 512 px entry is included.

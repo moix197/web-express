@@ -46,7 +46,7 @@ export default async function OgImage() {
               marginRight: "20px",
             }}
           >
-            <span style={{ color: "#ffffff", fontSize: "40px", fontWeight: 700 }}>W</span>
+            <span style={{ color: "#ffffff", fontSize: "32px", fontWeight: 700, letterSpacing: "-1px" }}>WE</span>
           </div>
           <span
             style={{
