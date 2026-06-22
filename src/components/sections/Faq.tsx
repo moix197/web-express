@@ -25,7 +25,7 @@ const FAQ_ITEMS: FaqItem[] = [
     value: "hosting",
     question: "¿El hosting y el dominio están incluidos?",
     answer:
-      "El hosting está incluido sin costo adicional. El dominio se contrata por separado, pero te acompañamos en todo el proceso y siempre quedará a tu nombre para que el sitio sea 100% tuyo.",
+      "El hosting está incluido sin costo en algunos paquetes; en otros, como la tienda online, se cotiza aparte según el proyecto. Escribinos y te contamos qué aplica a tu caso. El dominio se contrata por separado, pero te acompañamos en todo el proceso y siempre quedará a tu nombre para que el sitio sea 100% tuyo.",
   },
   {
     value: "administracion",
