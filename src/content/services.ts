@@ -60,17 +60,4 @@ export const services: ServicePackage[] = [
       "SEO y analítica de ventas",
     ],
   },
-  {
-    id: "branding-starter",
-    name: "Branding",
-    price: 149000,
-    description: "La identidad visual base para arrancar con todo.",
-    features: [
-      "Diseño de logo y variantes",
-      "Paleta de colores y tipografías",
-      "Mini manual de marca",
-      "Plantillas para redes sociales",
-      "Archivos listos para imprimir y web",
-    ],
-  },
 ]

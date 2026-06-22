@@ -16,7 +16,7 @@ const pillars: Pillar[] = [
   {
     icon: Palette,
     heading: "Diseño profesional",
-    body: "Cada sitio se diseña desde cero según tu identidad de marca. Nada de plantillas genéricas — tu negocio merece una presencia que lo represente de verdad.",
+    body: "Cada sitio se diseña desde cero según tu identidad de marca. Nada de plantillas genéricas. Tu negocio merece una presencia que lo represente de verdad.",
   },
   {
     icon: TrendingUp,

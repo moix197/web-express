@@ -19,13 +19,13 @@ const FAQ_ITEMS: FaqItem[] = [
     value: "tiempo",
     question: "¿Cuánto tarda en estar listo el sitio?",
     answer:
-      "Depende del paquete: Express está listo en 5–7 días hábiles, Business en 10–14 días y Store en 14–21 días. El plazo empieza cuando nos receptamos toda la información necesaria.",
+      "Depende del paquete: Express está listo en 5–7 días hábiles, Business en 10–14 días y Store en 14–21 días. El plazo empieza cuando tenemos toda la información necesaria.",
   },
   {
     value: "hosting",
     question: "¿El hosting y el dominio están incluidos?",
     answer:
-      "No están incluidos en el precio del desarrollo. Te asesoramos para que los contrates vos directamente — así el sitio es 100% tuyo sin depender de nosotros.",
+      "El hosting está incluido sin costo adicional. El dominio se contrata por separado, pero te acompañamos en todo el proceso y siempre quedará a tu nombre para que el sitio sea 100% tuyo.",
   },
   {
     value: "administracion",
@@ -38,12 +38,6 @@ const FAQ_ITEMS: FaqItem[] = [
     question: "¿Puedo integrar Mercado Pago para cobrar online?",
     answer:
       "Sí, el paquete Store incluye integración con Mercado Pago. Solo necesitás tener tu cuenta vendedor activa y nosotros conectamos el checkout al sitio.",
-  },
-  {
-    value: "soporte",
-    question: "¿Qué pasa si necesito ayuda después del lanzamiento?",
-    answer:
-      "Incluimos 30 días de soporte post-lanzamiento sin costo. Después podés contratar un plan de mantenimiento mensual o consultar cambios puntuales por hora.",
   },
 ]
 

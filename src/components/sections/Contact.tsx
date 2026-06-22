@@ -32,8 +32,7 @@ export function Contact() {
             Hablemos de tu proyecto
           </h2>
           <p className="mx-auto mt-4 max-w-[55ch] text-base leading-relaxed text-muted-foreground">
-            Contanos de qué se trata y te respondemos a la brevedad — sin
-            compromiso.
+            Contanos de qué se trata y te respondemos a la brevedad.
           </p>
         </div>
 

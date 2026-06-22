@@ -88,7 +88,7 @@ function ServiceCard({ pkg }: { pkg: ServicePackage }) {
         <Button
           asChild
           size="lg"
-          variant={isFeatured ? "accent" : "outline"}
+          variant="accent"
           className="w-full cursor-pointer transition-colors duration-150"
         >
           <a href="#contacto" aria-label={`Contratar paquete ${pkg.name}`}>
@@ -100,11 +100,11 @@ function ServiceCard({ pkg }: { pkg: ServicePackage }) {
   )
 }
 
-/** Branding + Sitio Web upsell callout — rendered below the 4 cards. */
-function BrandingUpsell() {
+/** Branding add-on callout — rendered below the plan cards. */
+function BrandingAddon() {
   return (
     <aside
-      aria-label="Combo Branding + Sitio Web"
+      aria-label="Add-on de Branding"
       className={cn(
         "mt-4 flex flex-col gap-3 rounded-xl border border-accent/40 bg-accent/5 px-6 py-5",
         "sm:flex-row sm:items-center sm:justify-between sm:gap-6"
@@ -112,12 +112,11 @@ function BrandingUpsell() {
     >
       <div className="space-y-1">
         <p className="font-display text-base font-bold text-foreground">
-          Combo Branding + Sitio Web
+          ¿Necesitás identidad de marca?
         </p>
         <p className="max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
-          Contratando Branding junto con cualquier paquete web obtenés
-          un descuento especial. Identidad visual y presencia online desde el
-          arranque.
+          Sumá Branding como add-on a cualquier plan: logo, paleta de colores
+          y todo lo que tu marca necesita para verse profesional.
         </p>
       </div>
       <Button
@@ -126,8 +125,8 @@ function BrandingUpsell() {
         variant="outline"
         className="shrink-0 cursor-pointer border-accent/50 transition-colors duration-150 hover:bg-accent/10"
       >
-        <a href="#contacto" aria-label="Consultar combo Branding + Sitio Web">
-          Consultar combo
+        <a href="#contacto" aria-label="Consultar add-on de Branding">
+          Consultar add-on
         </a>
       </Button>
     </aside>
@@ -160,14 +159,14 @@ export function Services() {
         </div>
 
         {/* Bento grid: 1-col → 2-col → 4-col */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {services.map((pkg) => (
             <ServiceCard key={pkg.id} pkg={pkg} />
           ))}
         </div>
 
-        {/* Branding + Web upsell callout */}
-        <BrandingUpsell />
+        {/* Branding add-on callout */}
+        <BrandingAddon />
       </div>
     </section>
   )

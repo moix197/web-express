@@ -1,13 +1,6 @@
-import { Globe, AtSign, Link } from "lucide-react"
 import { siteConfig } from "@/content/site"
 import { cn } from "@/lib/utils"
 import { NAV_LINKS } from "@/components/layout/nav-links"
-
-const SOCIAL_LINKS = [
-  { label: "GitHub", href: siteConfig.social.github, Icon: Globe },
-  { label: "Instagram", href: siteConfig.social.instagram, Icon: AtSign },
-  { label: "LinkedIn", href: siteConfig.social.linkedin, Icon: Link },
-] as const
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -62,30 +55,11 @@ export function Footer() {
         {/* Divider */}
         <div className="my-8 border-t border-border" />
 
-        {/* Bottom row: copyright + social icons */}
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+        {/* Bottom row: copyright */}
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
           <p className="text-sm text-muted-foreground">
             &copy; {year} {siteConfig.domain}. Todos los derechos reservados.
           </p>
-
-          {/* Social icons */}
-          <div className="flex items-center gap-3">
-            {SOCIAL_LINKS.map(({ label, href, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className={cn(
-                  "flex size-9 items-center justify-center rounded-lg border border-border",
-                  "text-muted-foreground",
-                  "cursor-pointer transition-colors duration-150 hover:border-accent hover:text-accent",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50",
-                )}
-              >
-                <Icon className="size-4" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>
